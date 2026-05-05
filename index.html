@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -39,7 +39,7 @@
     
     /* TICKER */
     .ticker { background: #1a1209; overflow: hidden; padding: 0.6rem 0; border-bottom: 3px solid #d4871e; }
-    .ticker-inner { display: flex; gap: 2.5rem; animation: tick 20s linear infinite; whitespace: nowrap; }
+    .ticker-inner { display: flex; gap: 2.5rem; animation: tick 20s linear infinite; white-space: nowrap; }
     .ticker-item { font-family: 'Syne', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #e8c832; font-weight: 600; }
     .ticker-dot { color: #c0392b; font-size: 14px; }
     @keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -63,7 +63,40 @@
     .pillar:hover { background: rgba(253, 246, 237, 0.14); }
     .pillar-num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #e8c832; min-width: 28px; }
     .pillar-text { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #fdf6ed; }
-    
+
+    /* OUR WORK — VIDEOS */
+    .our-work { background: #1a1209; border-bottom: 3px solid #d4871e; padding: 3.5rem 2rem; }
+    .our-work-content { max-width: 1280px; margin: 0 auto; }
+    .work-header { margin-bottom: 2.5rem; }
+    .work-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #fdf6ed; line-height: 1.05; margin-bottom: 0.5rem; }
+    .work-title .pop { color: #d4871e; }
+    .work-sub { font-size: 14px; color: rgba(253,246,237,0.6); max-width: 560px; line-height: 1.7; }
+    .series-label { display: inline-block; background: #d4871e; color: #1a1209; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 0.7rem; margin-bottom: 1rem; }
+    .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; background: #d4871e; margin-bottom: 3px; }
+    .video-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #0a0604; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+    /* OUR WORK — PHOTOS */
+    .photo-section { background: #fdf6ed; border-bottom: 3px solid #1a1209; padding: 3.5rem 2rem; }
+    .photo-content { max-width: 1280px; margin: 0 auto; }
+    .photo-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .photo-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #1a1209; line-height: 1.05; }
+    .photo-title .pop { color: #d4871e; }
+    .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; background: #1a1209; }
+    .photo-grid img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: opacity 0.2s; }
+    .photo-grid img:hover { opacity: 0.88; }
+    .photo-grid .photo-wide { grid-column: span 2; }
+    .photo-grid .photo-wide img { aspect-ratio: 16/10; }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(26,18,9,0.95); z-index: 999; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border: 3px solid #d4871e; }
+    .lightbox-close { position: fixed; top: 1.5rem; right: 2rem; color: #e8c832; font-size: 2rem; cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 800; z-index: 1000; }
+    .lightbox-prev, .lightbox-next { position: fixed; top: 50%; transform: translateY(-50%); color: #e8c832; font-size: 2.5rem; cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 800; z-index: 1000; background: rgba(26,18,9,0.5); padding: 0.5rem 1rem; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+
     /* FILMS */
     .films { padding: 3.5rem 2rem; background: #fdf6ed; border-bottom: 3px solid #1a1209; }
     .films-content { max-width: 1280px; margin: 0 auto; }
@@ -135,6 +168,9 @@
       .about-left, .fund-left { border-right: none; border-bottom: 3px solid #1a1209; }
       .stat-row { grid-template-columns: repeat(2, 1fr); }
       .form-row { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-grid .photo-wide { grid-column: span 2; }
     }
   </style>
 </head>
@@ -143,6 +179,7 @@
     <span class="logo-text">ELEWA TV</span>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#work">Our Work</a></li>
       <li><a href="#films">Films</a></li>
       <li><a href="#fund">Fund a Film</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -157,7 +194,7 @@
       <h1 class="hero-title">Stories That<br><span class="accent2">Redefine</span><br><span class="accent">Beautiful.</span></h1>
       <p class="hero-sub">ELEWA TV is a women-owned African creative production house. We make bold films, fund visionary storytellers, and build legacies for the diaspora — and the world.</p>
       <div class="hero-actions">
-        <button class="btn-dark" onclick="document.getElementById('films').scrollIntoView({behavior:'smooth'})">See Our 2027 Slate</button>
+        <button class="btn-dark" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">Watch Our Work</button>
         <button class="btn-outline" onclick="document.getElementById('fund').scrollIntoView({behavior:'smooth'})">Fund a Film</button>
       </div>
     </div>
@@ -171,6 +208,7 @@
       <span class="ticker-item">Coming 2027</span><span class="ticker-dot">★</span>
       <span class="ticker-item">Women-Owned</span><span class="ticker-dot">★</span>
       <span class="ticker-item">Diaspora Stories</span><span class="ticker-dot">★</span>
+      <span class="ticker-item">24/7 Daily</span><span class="ticker-dot">★</span>
       <span class="ticker-item">Submit Your Project</span><span class="ticker-dot">★</span>
       <span class="ticker-item">African Storytelling</span><span class="ticker-dot">★</span>
       <span class="ticker-item">Visual Production</span><span class="ticker-dot">★</span>
@@ -178,6 +216,7 @@
       <span class="ticker-item">Coming 2027</span><span class="ticker-dot">★</span>
       <span class="ticker-item">Women-Owned</span><span class="ticker-dot">★</span>
       <span class="ticker-item">Diaspora Stories</span><span class="ticker-dot">★</span>
+      <span class="ticker-item">24/7 Daily</span><span class="ticker-dot">★</span>
       <span class="ticker-item">Submit Your Project</span><span class="ticker-dot">★</span>
     </div>
   </div>
@@ -208,6 +247,66 @@
       </div>
     </div>
   </section>
+
+  <!-- OUR WORK — VIDEOS -->
+  <section id="work" class="our-work">
+    <div class="our-work-content">
+      <div class="work-header">
+        <div class="series-label">Now Streaming</div>
+        <h2 class="work-title">Our <span class="pop">Work.</span></h2>
+        <p class="work-sub">24/7 Daily is a docu-style entertainment series that immerses viewers into the world of creatives of African descent and the diaspora. Each episode blends storytelling with interactive experiences, highlighting how African culture shapes and inspires their craft, lifestyle, and global influence.</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/xrFGnOOYl10" title="ELEWA TV — 24/7 Daily Episode 1" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/4jxa-Jqt_Bo" title="ELEWA TV — 24/7 Daily Episode 2" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/but3dmWGVPs" title="ELEWA TV — 24/7 Daily Episode 3" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/nWPpROrq9FE" title="ELEWA TV — 24/7 Daily Episode 4" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR WORK — PHOTOS -->
+  <section class="photo-section">
+    <div class="photo-content">
+      <div class="photo-header">
+        <div>
+          <div class="section-tag">Creative Shoots</div>
+          <h2 class="photo-title">Behind The <span class="pop">Lens.</span></h2>
+        </div>
+      </div>
+      <div class="photo-grid" id="photoGrid">
+        <div class="photo-wide"><img src="images/WebRes-AbbyHair-0021.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(0)" style="cursor:pointer; aspect-ratio:16/10; object-fit:cover; width:100%;"></div>
+        <img src="images/WebRes-AbbyHair-0027.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(1)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0048.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(2)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0098.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(3)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0143.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(4)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0187.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(5)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0220.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(6)" style="cursor:pointer;">
+        <div class="photo-wide"><img src="images/WebRes-AbbyHair-0289.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(7)" style="cursor:pointer; aspect-ratio:16/10; object-fit:cover; width:100%;"></div>
+        <img src="images/WebRes-AbbyHair-0329.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(8)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0424.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(9)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0600.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(10)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0644.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(11)" style="cursor:pointer;">
+        <img src="images/WebRes-AbbyHair-0748.jpg" alt="ELEWA TV Creative Shoot" onclick="openLightbox(12)" style="cursor:pointer;">
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+    <span class="lightbox-prev" onclick="changePhoto(-1)">‹</span>
+    <img id="lightbox-img" src="" alt="ELEWA TV">
+    <span class="lightbox-next" onclick="changePhoto(1)">›</span>
+  </div>
 
   <section id="films" class="films">
     <div class="films-content">
@@ -324,7 +423,8 @@
         <p class="contact-sub">Productions, partnerships, press, and general enquiries welcome.</p>
         <div class="contact-links">
           <a class="contact-link" href="https://instagram.com/elewatv" target="_blank">Instagram</a>
-          <a class="contact-link" href="#">The Creative Chat</a>
+          <a class="contact-link" href="https://www.youtube.com/@elewatvofficial" target="_blank">YouTube</a>
+          <a class="contact-link" href="https://www.elewatv.com/the-creative-chat">The Creative Chat</a>
           <a class="contact-link" href="#">Press Kit</a>
         </div>
       </div>
@@ -340,6 +440,49 @@
   </footer>
 
   <script>
+    const photos = [
+      'images/WebRes-AbbyHair-0021.jpg',
+      'images/WebRes-AbbyHair-0027.jpg',
+      'images/WebRes-AbbyHair-0048.jpg',
+      'images/WebRes-AbbyHair-0098.jpg',
+      'images/WebRes-AbbyHair-0143.jpg',
+      'images/WebRes-AbbyHair-0187.jpg',
+      'images/WebRes-AbbyHair-0220.jpg',
+      'images/WebRes-AbbyHair-0289.jpg',
+      'images/WebRes-AbbyHair-0329.jpg',
+      'images/WebRes-AbbyHair-0424.jpg',
+      'images/WebRes-AbbyHair-0600.jpg',
+      'images/WebRes-AbbyHair-0644.jpg',
+      'images/WebRes-AbbyHair-0748.jpg'
+    ];
+    let currentPhoto = 0;
+
+    function openLightbox(index) {
+      currentPhoto = index;
+      document.getElementById('lightbox-img').src = photos[index];
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target !== document.getElementById('lightbox-img')) {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function changePhoto(dir) {
+      currentPhoto = (currentPhoto + dir + photos.length) % photos.length;
+      document.getElementById('lightbox-img').src = photos[currentPhoto];
+      event.stopPropagation();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') changePhoto(1);
+      if (e.key === 'ArrowLeft') changePhoto(-1);
+      if (e.key === 'Escape') closeLightbox();
+    });
+
     document.getElementById('projectForm').addEventListener('submit', function(e) {
       e.preventDefault();
       document.querySelector('.fund-form').style.display = 'none';
