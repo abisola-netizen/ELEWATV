@@ -15,26 +15,28 @@
     
     /* NAV */
     nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; background: #fdf6ed; border-bottom: 2px solid #1a1209; position: sticky; top: 0; z-index: 99; }
+    .logo-wrap { display: flex; align-items: center; gap: 0.6rem; }
+    .logo-img { height: 36px; width: auto; }
     .logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: #d4871e; }
     .nav-links { display: flex; gap: 1.8rem; list-style: none; }
     .nav-links a { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1a1209; transition: color 0.2s; cursor: pointer; }
     .nav-links a:hover { color: #d4871e; }
     .nav-cta { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: #d4871e; color: #fdf6ed; padding: 0.6rem 1.4rem; border: 2px solid #1a1209; cursor: pointer; transition: all 0.15s; }
     .nav-cta:hover { background: #c45c2a; }
-    .mobile-menu { display: none; }
+    .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
     
     /* HERO */
     .hero { position: relative; background: #d4871e; border-bottom: 3px solid #1a1209; overflow: hidden; min-height: 85vh; display: flex; align-items: center; }
     .hero-bg { position: absolute; inset: 0; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.15; }
-    .hero-gradient { position: absolute; inset: 0; background: linear-gradient(to right, #d4871e, rgba(212, 135, 30, 0.95), rgba(212, 135, 30, 0.7)); }
-    .hero-images { display: none; position: absolute; right: 0; top: 0; bottom: 0; width: 40%; padding: 2rem; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.18; }
+    .hero-gradient { position: absolute; inset: 0; background: linear-gradient(to right, #d4871e 40%, rgba(212,135,30,0.92) 60%, rgba(212,135,30,0.65)); }
+    .hero-images { display: none; position: absolute; right: 0; top: 0; bottom: 0; width: 42%; padding: 2rem; }
     .hero-images-inner { position: relative; height: 100%; display: flex; gap: 1rem; align-items: center; }
     .hero-img-1, .hero-img-2 { flex: 1; border: 4px solid #1a1209; overflow: hidden; transition: transform 0.3s; }
-    .hero-img-1 { height: 70%; transform: rotate(2deg); }
-    .hero-img-2 { height: 60%; transform: rotate(-3deg); }
+    .hero-img-1 { height: 72%; transform: rotate(2deg); }
+    .hero-img-2 { height: 62%; transform: rotate(-3deg); }
     .hero-img-1:hover, .hero-img-2:hover { transform: rotate(0deg); }
-    .hero-img-1 img, .hero-img-2 img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-img-1 img, .hero-img-2 img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
     .hero-pattern { position: absolute; inset: 0; opacity: 0.05; background-image: repeating-linear-gradient(45deg, #1a1209 0, #1a1209 1px, transparent 0, transparent 50%); background-size: 18px 18px; }
     .hero-content { position: relative; z-index: 10; width: 100%; max-width: 1280px; margin: 0 auto; padding: 3.5rem 2rem; }
     .hero-tag { display: inline-block; background: #1a1209; color: #e8c832; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.35rem 0.9rem; margin-bottom: 1.8rem; }
@@ -61,8 +63,8 @@
     /* ABOUT */
     .about { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 3px solid #1a1209; }
     .about-left { padding: 3.5rem 2rem; background: #fdf6ed; border-right: 3px solid #1a1209; position: relative; overflow: hidden; }
-    .about-img-bg { position: absolute; top: 0; right: 0; width: 256px; height: 256px; opacity: 0.1; }
-    .about-img-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-bg { position: absolute; top: 0; right: 0; width: 256px; height: 256px; opacity: 0.07; }
+    .about-img-bg img { width: 100%; height: 100%; object-fit: contain; }
     .about-content { position: relative; z-index: 10; }
     .about-right { padding: 3.5rem 2rem; background: #1a6b2e; }
     .section-tag { display: inline-block; background: #1a1209; color: #e8c832; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 0.7rem; margin-bottom: 1.5rem; }
@@ -76,55 +78,50 @@
     .stat-label { font-family: 'DM Sans', sans-serif; font-size: 10px; color: #6b5a3e; margin-top: 0.3rem; line-height: 1.3; }
     .about-right-headline { font-family: 'Syne', sans-serif; font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: #fdf6ed; line-height: 1.15; margin-bottom: 1.5rem; }
     .pillars { display: flex; flex-direction: column; gap: 2px; }
-    .pillar { background: rgba(253, 246, 237, 0.08); border: 1.5px solid rgba(253, 246, 237, 0.15); padding: 0.9rem 1rem; display: flex; align-items: center; gap: 0.9rem; transition: background 0.2s; }
-    .pillar:hover { background: rgba(253, 246, 237, 0.14); }
+    .pillar { background: rgba(253,246,237,0.08); border: 1.5px solid rgba(253,246,237,0.15); padding: 0.9rem 1rem; display: flex; align-items: center; gap: 0.9rem; transition: background 0.2s; }
+    .pillar:hover { background: rgba(253,246,237,0.14); }
     .pillar-num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #e8c832; min-width: 28px; }
     .pillar-text { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #fdf6ed; }
     
     /* GALLERY */
     .gallery { padding: 3.5rem 2rem; background: #fdf6ed; border-bottom: 3px solid #1a1209; }
     .gallery-content { max-width: 1280px; margin: 0 auto; }
-    .gallery-header { text-center; margin-bottom: 2.5rem; }
+    .gallery-header { margin-bottom: 2.5rem; }
     .gallery-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #1a1209; line-height: 1.05; margin-bottom: 1rem; }
     .gallery-title .pop { color: #d4871e; }
-    .gallery-desc { font-size: 18px; color: rgba(58, 46, 31, 0.8); max-width: 640px; margin: 0 auto; }
+    .gallery-desc { font-size: 16px; color: rgba(58,46,31,0.8); max-width: 640px; }
     .gallery-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; background: #1a1209; padding: 3px; }
     .gallery-item { aspect-ratio: 3/4; overflow: hidden; cursor: pointer; position: relative; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.4s; }
+    .gallery-item:hover img { transform: scale(1.08); }
     .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, #1a1209, transparent); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1rem; }
     .gallery-item:hover .gallery-overlay { opacity: 1; }
     .gallery-overlay span { color: #e8c832; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; }
     
     /* LIGHTBOX */
-    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 999; align-items: center; justify-content: center; padding: 2rem; }
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 999; align-items: center; justify-content: center; padding: 2rem; }
     .lightbox.active { display: flex; }
-    .lightbox-close { position: absolute; top: 1rem; right: 1rem; color: #d4871e; font-size: 48px; font-weight: bold; cursor: pointer; z-index: 1000; }
+    .lightbox-close { position: absolute; top: 1rem; right: 1rem; color: #d4871e; font-size: 48px; font-weight: bold; cursor: pointer; z-index: 1000; line-height: 1; }
     .lightbox-close:hover { color: #e8c832; }
     .lightbox img { max-width: 100%; max-height: 90vh; object-fit: contain; }
     
     /* VIDEO SECTION */
     .videos { padding: 3.5rem 2rem; background: #1a1209; border-bottom: 3px solid #d4871e; }
     .videos-content { max-width: 1280px; margin: 0 auto; }
-    .videos-header { text-center; margin-bottom: 2.5rem; }
+    .videos-header { margin-bottom: 2.5rem; }
     .videos-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #fdf6ed; line-height: 1.05; margin-bottom: 1rem; }
     .videos-title .accent { color: #e8c832; }
-    .videos-desc { font-size: 18px; color: rgba(253, 246, 237, 0.7); max-width: 640px; margin: 0 auto 1.5rem; }
-    .youtube-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #c0392b; color: #fdf6ed; padding: 0.75rem 1.5rem; border: 2px solid #fdf6ed; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; transition: background 0.3s; cursor: pointer; }
+    .videos-desc { font-size: 16px; color: rgba(253,246,237,0.7); max-width: 640px; margin-bottom: 1.5rem; }
+    .youtube-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #c0392b; color: #fdf6ed; padding: 0.75rem 1.5rem; border: 2px solid #fdf6ed; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; transition: background 0.3s; cursor: pointer; text-decoration: none; }
     .youtube-btn:hover { background: #d4871e; }
     .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+
+    /* YouTube embed cards */
     .video-card { cursor: pointer; }
-    .video-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; border: 3px solid #d4871e; margin-bottom: 1rem; }
-    .video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-    .video-card:hover .video-thumb img { transform: scale(1.05); }
-    .video-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
-    .video-card:hover .video-overlay { background: rgba(0, 0, 0, 0.6); }
-    .play-btn { width: 64px; height: 64px; background: #d4871e; border: 2px solid #fdf6ed; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
-    .video-card:hover .play-btn { transform: scale(1.1); }
-    .play-icon { width: 0; height: 0; border-left: 16px solid #fdf6ed; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
-    .video-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #fdf6ed; margin-bottom: 0.5rem; transition: color 0.3s; }
-    .video-card:hover .video-title { color: #e8c832; }
-    .video-desc { font-size: 14px; color: rgba(253, 246, 237, 0.6); line-height: 1.6; }
+    .video-embed-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; border: 3px solid #d4871e; margin-bottom: 1rem; background: #000; }
+    .video-embed-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+    .video-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: #fdf6ed; margin-bottom: 0.4rem; }
+    .video-desc { font-size: 13px; color: rgba(253,246,237,0.6); line-height: 1.6; }
     
     /* FILMS */
     .films { padding: 3.5rem 2rem; background: #fdf6ed; border-bottom: 3px solid #1a1209; }
@@ -152,26 +149,17 @@
     .fund-right { padding: 3.5rem 2rem; background: #fdf6ed; }
     .fund-headline { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.05; color: #fdf6ed; margin-bottom: 1.2rem; }
     .fund-headline .pop { color: #e8c832; }
-    .fund-body { font-size: 14px; line-height: 1.8; color: rgba(253, 246, 237, 0.8); margin-bottom: 2rem; }
+    .fund-body { font-size: 14px; line-height: 1.8; color: rgba(253,246,237,0.8); margin-bottom: 2rem; }
     .fund-perks { display: flex; flex-direction: column; gap: 0; }
-    .fund-perk { padding: 0.9rem 0; border-bottom: 1.5px solid rgba(253, 246, 237, 0.2); display: flex; gap: 1rem; align-items: flex-start; }
+    .fund-perk { padding: 0.9rem 0; border-bottom: 1.5px solid rgba(253,246,237,0.2); display: flex; gap: 1rem; align-items: flex-start; }
     .perk-icon { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
-    .perk-text { font-size: 13px; line-height: 1.6; color: rgba(253, 246, 237, 0.75); }
+    .perk-text { font-size: 13px; line-height: 1.6; color: rgba(253,246,237,0.75); }
     .perk-text strong { color: #fdf6ed; font-weight: 500; }
     .form-tag { display: inline-block; background: #1a1209; color: #e8c832; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 0.7rem; margin-bottom: 1.5rem; }
-    .fund-form { display: flex; flex-direction: column; gap: 0.9rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
-    .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
-    .form-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b5a3e; }
-    .form-input { background: #fff; border: 2px solid #1a1209; color: #1a1209; padding: 0.65rem 0.8rem; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.15s; border-radius: 0; }
-    .form-input:focus { border-color: #d4871e; }
-    .form-input::placeholder { color: #bba882; }
-    .form-textarea { background: #fff; border: 2px solid #1a1209; color: #1a1209; padding: 0.65rem 0.8rem; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; resize: vertical; min-height: 85px; transition: border-color 0.15s; border-radius: 0; }
-    .form-textarea:focus { border-color: #d4871e; }
-    .form-note { font-size: 12px; color: #8a7555; line-height: 1.6; }
-    .btn-submit { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: #d4871e; color: #fdf6ed; padding: 0.85rem 2rem; border: 2px solid #1a1209; cursor: pointer; transition: background 0.15s; }
-    .btn-submit:hover { background: #c45c2a; }
-    .success-message { display: none; background: #1a6b2e; border: 2px solid #1a1209; padding: 1.5rem; text-align: center; color: #fdf6ed; font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 600; }
+
+    /* Google Form embed */
+    .google-form-wrap { width: 100%; overflow: hidden; border: 2px solid #1a1209; background: #fff; }
+    .google-form-wrap iframe { width: 100%; border: none; display: block; min-height: 900px; }
     
     /* CONTACT */
     .contact { background: #e8c832; border-bottom: 3px solid #1a1209; padding: 3.5rem 2rem; }
@@ -190,12 +178,14 @@
     footer { background: #1a1209; padding: 1.8rem 2rem; }
     .footer-content { max-width: 1280px; margin: 0 auto; }
     .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
-    .footer-logo { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #d4871e; }
+    .footer-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .footer-logo img { height: 28px; width: auto; filter: brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(5deg); opacity: 0.85; }
+    .footer-logo-text { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #d4871e; }
     .social-icons { display: flex; gap: 0.75rem; }
     .social-icon { color: #d4871e; transition: color 0.3s; }
     .social-icon:hover { color: #e8c832; }
     .social-icon svg { width: 20px; height: 20px; }
-    .footer-copy { font-family: 'DM Sans', sans-serif; font-size: 11px; color: rgba(253, 246, 237, 0.35); text-align: center; }
+    .footer-copy { font-family: 'DM Sans', sans-serif; font-size: 11px; color: rgba(253,246,237,0.35); text-align: center; }
     
     /* RESPONSIVE */
     @media (min-width: 1024px) {
@@ -208,7 +198,6 @@
       .about, .fund, .film-grid { grid-template-columns: 1fr; }
       .about-left, .fund-left { border-right: none; border-bottom: 3px solid #1a1209; }
       .stat-row { grid-template-columns: repeat(2, 1fr); }
-      .form-row { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .video-grid { grid-template-columns: 1fr; }
     }
@@ -217,28 +206,40 @@
 <body>
 
   <nav>
-    <span class="logo-text">ELEWA TV</span>
+    <div class="logo-wrap">
+      <img class="logo-img" src="assets/images/logo.png" alt="ELEWA TV Logo">
+    </div>
     <ul class="nav-links">
-      <li><a onclick="scrollTo('#about')">About</a></li>
-      <li><a onclick="scrollTo('#films')">Films</a></li>
-      <li><a onclick="scrollTo('#fund')">Fund a Film</a></li>
+      <li><a onclick="scrollToSection('#about')">About</a></li>
+      <li><a onclick="scrollToSection('#films')">Films</a></li>
+      <li><a onclick="scrollToSection('#fund')">Fund a Film</a></li>
     </ul>
-    <button class="nav-cta" onclick="scrollTo('#fund')">Submit Your Project</button>
-    <div class="mobile-menu">☰</div>
+    <button class="nav-cta" onclick="scrollToSection('#fund')">Submit Your Project</button>
+    <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
   </nav>
+
+  <!-- Mobile nav drawer -->
+  <div id="mobile-drawer" style="display:none; background:#1a1209; padding:1.5rem 2rem; border-bottom:3px solid #d4871e; position:sticky; top:64px; z-index:98;">
+    <ul style="list-style:none; display:flex; flex-direction:column; gap:1.2rem;">
+      <li><a onclick="scrollToSection('#about'); toggleMobileMenu();" style="font-family:'Syne',sans-serif; font-size:15px; font-weight:700; text-transform:uppercase; color:#e8c832; letter-spacing:0.08em;">About</a></li>
+      <li><a onclick="scrollToSection('#films'); toggleMobileMenu();" style="font-family:'Syne',sans-serif; font-size:15px; font-weight:700; text-transform:uppercase; color:#e8c832; letter-spacing:0.08em;">Films</a></li>
+      <li><a onclick="scrollToSection('#fund'); toggleMobileMenu();" style="font-family:'Syne',sans-serif; font-size:15px; font-weight:700; text-transform:uppercase; color:#e8c832; letter-spacing:0.08em;">Fund a Film</a></li>
+      <li><a href="mailto:Info@elewatv.com" style="font-family:'Syne',sans-serif; font-size:15px; font-weight:700; text-transform:uppercase; color:#d4871e; letter-spacing:0.08em;">Contact</a></li>
+    </ul>
+  </div>
 
   <section class="hero">
     <div class="hero-bg">
-      <img src="https://via.placeholder.com/1920x1080/d4871e/1a1209?text=ELEWA+TV" alt="Hero Background">
+      <img src="assets/images/hero-bg.jpg" alt="ELEWA TV Visual">
     </div>
     <div class="hero-gradient"></div>
     <div class="hero-images">
       <div class="hero-images-inner">
         <div class="hero-img-1">
-          <img src="https://via.placeholder.com/600x800/fdf6ed/1a1209?text=Creative+Vision" alt="Creative Vision">
+          <img src="assets/images/hero-img-1.jpg" alt="ELEWA Creative Vision">
         </div>
         <div class="hero-img-2">
-          <img src="https://via.placeholder.com/600x800/fdf6ed/1a1209?text=African+Art" alt="African Art">
+          <img src="assets/images/hero-img-2.jpg" alt="ELEWA African Art">
         </div>
       </div>
     </div>
@@ -256,13 +257,11 @@
         </p>
         <div class="hero-actions">
           <a href="https://www.youtube.com/@elewatvofficial" target="_blank" class="btn btn-red">
-            <svg style="width:16px;height:16px;" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
+            <svg style="width:16px;height:16px;" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             Watch 24/7 Daily
           </a>
-          <button class="btn btn-dark" onclick="scrollTo('#films')">See Our 2027 Slate</button>
-          <button class="btn btn-outline" onclick="scrollTo('#fund')">Fund a Film</button>
+          <button class="btn btn-dark" onclick="scrollToSection('#films')">See Our 2027 Slate</button>
+          <button class="btn btn-outline" onclick="scrollToSection('#fund')">Fund a Film</button>
         </div>
       </div>
     </div>
@@ -290,7 +289,7 @@
   <section id="about" class="about">
     <div class="about-left">
       <div class="about-img-bg">
-        <img src="https://via.placeholder.com/256x256/fdf6ed/1a1209?text=ELEWA" alt="">
+        <img src="assets/images/logo.png" alt="">
       </div>
       <div class="about-content">
         <div class="section-tag">About ELEWA TV</div>
@@ -319,6 +318,7 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
   <section class="gallery">
     <div class="gallery-content">
       <div class="gallery-header">
@@ -327,44 +327,44 @@
         <p class="gallery-desc">From fashion editorials to cultural narratives — our lens captures the essence of African creativity</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/d4871e/1a1209?text=Photo+1')">
-          <img src="https://via.placeholder.com/600x800/d4871e/1a1209?text=Photo+1" alt="Creative Fashion Editorial">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-1.jpg')">
+          <img src="assets/images/gallery-1.jpg" alt="ELEWA Editorial 1">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/c0392b/fdf6ed?text=Photo+2')">
-          <img src="https://via.placeholder.com/600x800/c0392b/fdf6ed?text=Photo+2" alt="African Creative Vision">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-2.jpg')">
+          <img src="assets/images/gallery-2.jpg" alt="ELEWA Editorial 2">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/1a6b2e/fdf6ed?text=Photo+3')">
-          <img src="https://via.placeholder.com/600x800/1a6b2e/fdf6ed?text=Photo+3" alt="Bold Artistic Expression">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-3.jpg')">
+          <img src="assets/images/gallery-3.jpg" alt="ELEWA Editorial 3">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/e8c832/1a1209?text=Photo+4')">
-          <img src="https://via.placeholder.com/600x800/e8c832/1a1209?text=Photo+4" alt="Cultural Storytelling">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-4.jpg')">
+          <img src="assets/images/gallery-4.jpg" alt="ELEWA Editorial 4">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/d4871e/fdf6ed?text=Photo+5')">
-          <img src="https://via.placeholder.com/600x800/d4871e/fdf6ed?text=Photo+5" alt="Fashion & Identity">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-5.jpg')">
+          <img src="assets/images/gallery-5.jpg" alt="ELEWA Editorial 5">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/c0392b/1a1209?text=Photo+6')">
-          <img src="https://via.placeholder.com/600x800/c0392b/1a1209?text=Photo+6" alt="Diaspora Aesthetics">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-6.jpg')">
+          <img src="assets/images/gallery-6.jpg" alt="ELEWA Editorial 6">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/1a6b2e/1a1209?text=Photo+7')">
-          <img src="https://via.placeholder.com/600x800/1a6b2e/1a1209?text=Photo+7" alt="Visual Narrative">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-7.jpg')">
+          <img src="assets/images/gallery-7.jpg" alt="ELEWA Editorial 7">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/e8c832/fdf6ed?text=Photo+8')">
-          <img src="https://via.placeholder.com/600x800/e8c832/fdf6ed?text=Photo+8" alt="Creative Direction">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-8.jpg')">
+          <img src="assets/images/gallery-8.jpg" alt="ELEWA Editorial 8">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/d4871e/1a1209?text=Photo+9')">
-          <img src="https://via.placeholder.com/600x800/d4871e/1a1209?text=Photo+9" alt="Artistic Vision">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-9.jpg')">
+          <img src="assets/images/gallery-9.jpg" alt="ELEWA Editorial 9">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
-        <div class="gallery-item" onclick="openLightbox('https://via.placeholder.com/600x800/c0392b/fdf6ed?text=Photo+10')">
-          <img src="https://via.placeholder.com/600x800/c0392b/fdf6ed?text=Photo+10" alt="Contemporary African Art">
+        <div class="gallery-item" onclick="openLightbox('assets/images/gallery-10.jpg')">
+          <img src="assets/images/gallery-10.jpg" alt="ELEWA Editorial 10">
           <div class="gallery-overlay"><span>View</span></div>
         </div>
       </div>
@@ -376,6 +376,7 @@
     <img id="lightbox-img" src="" alt="">
   </div>
 
+  <!-- VIDEO SECTION -->
   <section class="videos">
     <div class="videos-content">
       <div class="videos-header">
@@ -383,47 +384,55 @@
         <h2 class="videos-title">24/7 Daily <span class="accent">&</span> More</h2>
         <p class="videos-desc">Explore our latest videos, behind-the-scenes content, and film previews</p>
         <a href="https://www.youtube.com/@elewatvofficial" target="_blank" class="youtube-btn">
-          <svg style="width:20px;height:20px;" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-          </svg>
+          <svg style="width:20px;height:20px;" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           Subscribe on YouTube
         </a>
       </div>
       <div class="video-grid">
+        <!-- Video 1: your shared link xrFGnOOYl10 -->
         <div class="video-card">
-          <div class="video-thumb">
-            <img src="https://via.placeholder.com/800x450/d4871e/1a1209?text=24/7+Daily" alt="24/7 Daily">
-            <div class="video-overlay">
-              <div class="play-btn"><div class="play-icon"></div></div>
-            </div>
+          <div class="video-embed-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/xrFGnOOYl10?rel=0&modestbranding=1"
+              title="ELEWA TV - Featured Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <h3 class="video-title">24/7 Daily - Latest Episodes</h3>
+          <h3 class="video-title">24/7 Daily — Latest Episode</h3>
           <p class="video-desc">Behind the scenes with African creatives shaping global culture</p>
         </div>
+        <!-- Video 2: ELEWA channel playlist embed -->
         <div class="video-card">
-          <div class="video-thumb">
-            <img src="https://via.placeholder.com/800x450/c0392b/fdf6ed?text=Sis+Eko" alt="Sis Eko">
-            <div class="video-overlay">
-              <div class="play-btn"><div class="play-icon"></div></div>
-            </div>
+          <div class="video-embed-wrap">
+            <iframe
+              src="https://www.youtube.com/embed?listType=user_uploads&list=elewatvofficial&index=2&rel=0&modestbranding=1"
+              title="ELEWA TV - Recent Upload"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <h3 class="video-title">Sis Eko - Coming 2027</h3>
+          <h3 class="video-title">Sis Eko — Coming 2027</h3>
           <p class="video-desc">First look at our feature film set in 1977 Lagos and Nairobi</p>
         </div>
+        <!-- Video 3: ELEWA channel playlist embed -->
         <div class="video-card">
-          <div class="video-thumb">
-            <img src="https://via.placeholder.com/800x450/1a6b2e/fdf6ed?text=Subscribe" alt="ELEWA TV Channel">
-            <div class="video-overlay">
-              <div class="play-btn"><div class="play-icon"></div></div>
-            </div>
+          <div class="video-embed-wrap">
+            <iframe
+              src="https://www.youtube.com/embed?listType=user_uploads&list=elewatvofficial&index=3&rel=0&modestbranding=1"
+              title="ELEWA TV Channel"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
           </div>
-          <h3 class="video-title">ELEWA TV - Channel</h3>
+          <h3 class="video-title">ELEWA TV — Channel</h3>
           <p class="video-desc">Subscribe for African stories, creative content, and more</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FILMS -->
   <section id="films" class="films">
     <div class="films-content">
       <div class="films-header">
@@ -465,6 +474,7 @@
     </div>
   </section>
 
+  <!-- FUND + GOOGLE FORM -->
   <section id="fund" class="fund">
     <div class="fund-left">
       <div class="section-tag">Fund a Film</div>
@@ -479,58 +489,23 @@
     </div>
     <div class="fund-right">
       <div class="form-tag">Submit Your Project</div>
-      <form class="fund-form" id="projectForm">
-        <div class="form-row">
-          <div class="form-field">
-            <label class="form-label">Your Name</label>
-            <input class="form-input" type="text" placeholder="Full name" required>
-          </div>
-          <div class="form-field">
-            <label class="form-label">Email</label>
-            <input class="form-input" type="email" placeholder="you@email.com" required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label class="form-label">Project Title</label>
-            <input class="form-input" type="text" placeholder="Working title" required>
-          </div>
-          <div class="form-field">
-            <label class="form-label">Format</label>
-            <select class="form-input" required>
-              <option value="">Select format</option>
-              <option>Narrative Feature</option>
-              <option>Documentary</option>
-              <option>Short Film</option>
-              <option>Series / Episodic</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Project Synopsis</label>
-          <textarea class="form-textarea" placeholder="Tell us about your story — genre, themes, where it's set..." required></textarea>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Development Stage</label>
-          <select class="form-input" required>
-            <option value="">Where are you?</option>
-            <option>Concept / Idea Stage</option>
-            <option>Script in Progress</option>
-            <option>Script Complete</option>
-            <option>In Pre-Production</option>
-            <option>Seeking Post-Production Funding</option>
-          </select>
-        </div>
-        <p class="form-note">We review all submissions and respond within 4–6 weeks. African and diaspora-led projects are especially encouraged to apply.</p>
-        <button type="submit" class="btn-submit">Submit Project →</button>
-      </form>
-      <div id="successMessage" class="success-message">
-        Submitted! We'll review and get back to you within 4–6 weeks.
+      <!-- REAL Google Form — all submissions go to your Google Sheet -->
+      <div class="google-form-wrap">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfNp7Itv1Q5wTT4TY3GyXwuw2zJzftJ5Cq7X0e5MVf2Fv2BhQ/viewform?embedded=true"
+          width="100%"
+          height="900"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="ELEWA TV Project Submission Form">
+          Loading…
+        </iframe>
       </div>
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section class="contact">
     <div class="contact-content">
       <div class="contact-left">
@@ -551,17 +526,16 @@
   <footer>
     <div class="footer-content">
       <div class="footer-top">
-        <div class="footer-logo">ELEWA TV · Visual Production</div>
+        <div class="footer-logo">
+          <img src="assets/images/logo.png" alt="ELEWA TV">
+          <span class="footer-logo-text">· Visual Production</span>
+        </div>
         <div class="social-icons">
           <a class="social-icon" href="https://www.youtube.com/@elewatvofficial" target="_blank" aria-label="YouTube">
-            <svg fill="currentColor" viewBox="0 0 24 24">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </a>
           <a class="social-icon" href="https://www.instagram.com/elewatv/" target="_blank" aria-label="Instagram">
-            <svg fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
         </div>
       </div>
@@ -570,8 +544,13 @@
   </footer>
 
   <script>
-    function scrollTo(id) {
+    function scrollToSection(id) {
       document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.style.display = drawer.style.display === 'none' ? 'block' : 'none';
     }
     
     function openLightbox(src) {
@@ -582,16 +561,10 @@
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('active');
     }
-    
-    document.getElementById('projectForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.querySelector('.fund-form').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'block';
-      setTimeout(function() {
-        document.querySelector('.fund-form').style.display = 'flex';
-        document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('projectForm').reset();
-      }, 4000);
+
+    // Close lightbox on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
     });
   </script>
 
