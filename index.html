@@ -1,363 +1,956 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ELEWA TV - Visual Production Company</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
-  
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #fdf6ed; color: #1a1209; font-family: 'DM Sans', sans-serif; font-weight: 400; }
-    a { text-decoration: none; color: inherit; }
-    
-    /* NAV */
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; background: #fdf6ed; border-bottom: 2px solid #1a1209; position: sticky; top: 0; z-index: 99; }
-    .logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: #d4871e; }
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
-    .nav-links a { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1a1209; transition: color 0.2s; }
-    .nav-links a:hover { color: #d4871e; }
-    .nav-cta { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: #d4871e; color: #fdf6ed; padding: 0.6rem 1.4rem; border: 2px solid #1a1209; cursor: pointer; transition: all 0.15s; }
-    .nav-cta:hover { background: #c45c2a; }
-    
-    /* HERO */
-    .hero { background: #d4871e; border-bottom: 3px solid #1a1209; padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; }
-    .hero-pattern { position: absolute; top: 0; right: 0; width: 45%; height: 100%; opacity: 0.12; background-image: repeating-linear-gradient(45deg, #1a1209 0, #1a1209 1px, transparent 0, transparent 50%); background-size: 18px 18px; }
-    .hero-content { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; }
-    .hero-tag { display: inline-block; background: #1a1209; color: #e8c832; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.35rem 0.9rem; margin-bottom: 1.8rem; }
-    .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(46px, 7vw, 88px); font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; color: #1a1209; margin-bottom: 1.6rem; max-width: 640px; }
-    .hero-title .accent { color: #fdf6ed; }
-    .hero-title .accent2 { color: #c0392b; }
-    .hero-sub { font-size: 16px; line-height: 1.7; color: #1a1209; max-width: 460px; margin-bottom: 2.5rem; opacity: 0.8; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-dark { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: #1a1209; color: #e8c832; padding: 0.8rem 2rem; border: 2px solid #1a1209; cursor: pointer; transition: all 0.15s; }
-    .btn-dark:hover { background: #c45c2a; border-color: #c45c2a; color: #fdf6ed; }
-    .btn-outline { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: transparent; color: #1a1209; padding: 0.8rem 2rem; border: 2px solid #1a1209; cursor: pointer; transition: all 0.15s; }
-    .btn-outline:hover { background: #1a1209; color: #fdf6ed; }
-    
-    /* TICKER */
-    .ticker { background: #1a1209; overflow: hidden; padding: 0.6rem 0; border-bottom: 3px solid #d4871e; }
-    .ticker-inner { display: flex; gap: 2.5rem; animation: tick 20s linear infinite; whitespace: nowrap; }
-    .ticker-item { font-family: 'Syne', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #e8c832; font-weight: 600; }
-    .ticker-dot { color: #c0392b; font-size: 14px; }
-    @keyframes tick { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    
-    /* ABOUT */
-    .about { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 3px solid #1a1209; }
-    .about-left { padding: 3.5rem 2rem; background: #fdf6ed; border-right: 3px solid #1a1209; }
-    .about-right { padding: 3.5rem 2rem; background: #1a6b2e; }
-    .section-tag { display: inline-block; background: #1a1209; color: #e8c832; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 0.7rem; margin-bottom: 1.5rem; }
-    .section-tag.light { background: #e8c832; color: #1a1209; }
-    .about-headline { font-family: 'Syne', sans-serif; font-size: clamp(24px, 3vw, 36px); font-weight: 800; line-height: 1.15; margin-bottom: 1.2rem; color: #1a1209; }
-    .about-headline .pop { color: #d4871e; }
-    .about-body { font-size: 14px; line-height: 1.8; color: #3a2e1f; margin-bottom: 1rem; }
-    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: #1a1209; margin-top: 2rem; border: 2px solid #1a1209; }
-    .stat { background: #fdf6ed; padding: 1.2rem 0.8rem; text-align: center; }
-    .stat-num { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; color: #d4871e; line-height: 1; }
-    .stat-label { font-family: 'DM Sans', sans-serif; font-size: 10px; color: #6b5a3e; margin-top: 0.3rem; line-height: 1.3; }
-    .about-right-headline { font-family: 'Syne', sans-serif; font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: #fdf6ed; line-height: 1.15; margin-bottom: 1.5rem; }
-    .pillars { display: flex; flex-direction: column; gap: 2px; }
-    .pillar { background: rgba(253, 246, 237, 0.08); border: 1.5px solid rgba(253, 246, 237, 0.15); padding: 0.9rem 1rem; display: flex; align-items: center; gap: 0.9rem; transition: background 0.2s; }
-    .pillar:hover { background: rgba(253, 246, 237, 0.14); }
-    .pillar-num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800; color: #e8c832; min-width: 28px; }
-    .pillar-text { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: #fdf6ed; }
-    
-    /* FILMS */
-    .films { padding: 3.5rem 2rem; background: #fdf6ed; border-bottom: 3px solid #1a1209; }
-    .films-content { max-width: 1280px; margin: 0 auto; }
-    .films-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
-    .films-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: #1a1209; line-height: 1.05; }
-    .films-title .pop { color: #d4871e; }
-    .coming { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #c0392b; background: #fce8e6; border: 1.5px solid #c0392b; padding: 0.4rem 0.9rem; }
-    .film-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; background: #1a1209; }
-    .film-card { background: #fdf6ed; padding: 2rem 1.5rem; position: relative; overflow: hidden; border-top: 4px solid #d4871e; }
-    .film-card:nth-child(2) { border-top-color: #c0392b; }
-    .film-card:nth-child(3) { border-top-color: #1a6b2e; }
-    .film-genre { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #d4871e; margin-bottom: 0.8rem; }
-    .film-card:nth-child(2) .film-genre { color: #c0392b; }
-    .film-card:nth-child(3) .film-genre { color: #1a6b2e; }
-    .film-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; line-height: 1.2; margin-bottom: 0.8rem; color: #1a1209; }
-    .film-desc { font-size: 13px; line-height: 1.7; color: #5a4a30; margin-bottom: 1.5rem; }
-    .film-meta { display: flex; justify-content: space-between; align-items: center; }
-    .film-year { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: #bba882; }
-    .film-badge { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: #e8c832; color: #1a1209; padding: 0.25rem 0.6rem; border: 1.5px solid #1a1209; }
-    
-    /* FUND */
-    .fund { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 3px solid #1a1209; }
-    .fund-left { padding: 3.5rem 2rem; background: #c0392b; border-right: 3px solid #1a1209; }
-    .fund-right { padding: 3.5rem 2rem; background: #fdf6ed; }
-    .fund-headline { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.05; color: #fdf6ed; margin-bottom: 1.2rem; }
-    .fund-headline .pop { color: #e8c832; }
-    .fund-body { font-size: 14px; line-height: 1.8; color: rgba(253, 246, 237, 0.8); margin-bottom: 2rem; }
-    .fund-perks { display: flex; flex-direction: column; gap: 0; }
-    .fund-perk { padding: 0.9rem 0; border-bottom: 1.5px solid rgba(253, 246, 237, 0.2); display: flex; gap: 1rem; align-items: flex-start; }
-    .perk-icon { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
-    .perk-text { font-size: 13px; line-height: 1.6; color: rgba(253, 246, 237, 0.75); }
-    .perk-text strong { color: #fdf6ed; font-weight: 500; }
-    .form-tag { display: inline-block; background: #1a1209; color: #e8c832; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 0.7rem; margin-bottom: 1.5rem; }
-    .fund-form { display: flex; flex-direction: column; gap: 0.9rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
-    .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
-    .form-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #6b5a3e; }
-    .form-input { background: #fff; border: 2px solid #1a1209; color: #1a1209; padding: 0.65rem 0.8rem; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; transition: border-color 0.15s; border-radius: 0; }
-    .form-input:focus { border-color: #d4871e; }
-    .form-input::placeholder { color: #bba882; }
-    .form-textarea { background: #fff; border: 2px solid #1a1209; color: #1a1209; padding: 0.65rem 0.8rem; font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none; resize: vertical; min-height: 85px; transition: border-color 0.15s; border-radius: 0; }
-    .form-textarea:focus { border-color: #d4871e; }
-    .form-note { font-size: 12px; color: #8a7555; line-height: 1.6; }
-    .btn-submit { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: #d4871e; color: #fdf6ed; padding: 0.85rem 2rem; border: 2px solid #1a1209; cursor: pointer; transition: background 0.15s; }
-    .btn-submit:hover { background: #c45c2a; }
-    .success-message { background: #1a6b2e; border: 2px solid #1a1209; padding: 1.5rem; text-align: center; color: #fdf6ed; font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 600; display: none; }
-    
-    /* CONTACT */
-    .contact { background: #e8c832; border-bottom: 3px solid #1a1209; padding: 3.5rem 2rem; }
-    .contact-content { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
-    .contact-tag { display: inline-block; background: #1a1209; color: #e8c832; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 0.7rem; margin-bottom: 1.2rem; }
-    .contact-headline { font-family: 'Syne', sans-serif; font-size: clamp(26px, 3.5vw, 44px); font-weight: 800; color: #1a1209; line-height: 1.1; margin-bottom: 0.5rem; }
-    .contact-sub { font-size: 14px; color: #3a2e1f; opacity: 0.7; }
-    .contact-links { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
-    .contact-link { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: #1a1209; color: #e8c832; padding: 0.5rem 1rem; transition: background 0.15s; }
-    .contact-link:hover { background: #c45c2a; }
-    .contact-email { font-family: 'Syne', sans-serif; font-size: clamp(18px, 2.5vw, 28px); font-weight: 800; color: #1a1209; border-bottom: 3px solid #1a1209; padding-bottom: 0.3rem; }
-    
-    /* FOOTER */
-    footer { background: #1a1209; padding: 1.8rem 2rem; }
-    .footer-content { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #d4871e; }
-    .footer-copy { font-family: 'DM Sans', sans-serif; font-size: 11px; color: rgba(253, 246, 237, 0.35); }
-    
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
-      .about, .fund, .film-grid { grid-template-columns: 1fr; }
-      .about-left, .fund-left { border-right: none; border-bottom: 3px solid #1a1209; }
-      .stat-row { grid-template-columns: repeat(2, 1fr); }
-      .form-row { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELEWA TV — Visual Production Company</title>
+<meta name="description" content="ELEWA TV is a women-owned African creative production house. We make bold films, fund visionary storytellers, and build legacies for the diaspora — and the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fdf6ed; --ink:#1a1209; --primary:#d4871e; --primary-dark:#c45c2a;
+    --green:#1a6b2e; --yellow:#e8c832; --red:#c0392b; --muted:#6b5a3e; --tan:#bba882;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.5;
+    -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+  }
+  /* Keep form fields normally editable/selectable so people can still type and fix typos */
+  input,textarea,select{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;}
+  img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;pointer-events:auto;}
+  h1,h2,h3,h4,.syne{font-family:'Syne',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  button{font-family:inherit;cursor:pointer;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+  .eyebrow{display:inline-block;background:var(--ink);color:var(--yellow);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;padding:6px 12px;margin-bottom:24px;}
+  .eyebrow.on-dark{background:var(--yellow);color:var(--ink);}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:12px 28px;border:2px solid var(--ink);transition:all .2s;}
+  .btn-red{background:var(--red);color:var(--bg);}
+  .btn-red:hover{background:var(--ink);}
+  .btn-dark{background:var(--ink);color:var(--yellow);}
+  .btn-dark:hover{background:var(--primary-dark);color:var(--bg);}
+  .btn-outline{background:transparent;color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--bg);}
+
+  /* ---------- Nav ---------- */
+  nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:2px solid var(--ink);}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+  .nav-logo img{height:40px;object-fit:contain;}
+  .nav-logo .fallback{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--primary);}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links button.link{background:none;border:none;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);}
+  .nav-links button.link:hover{color:var(--primary);}
+  .nav-book{background:var(--primary);color:var(--ink);padding:10px 20px;border:2px solid var(--ink);font-family:'Syne',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+  .nav-book:hover{background:var(--primary-dark);}
+  .nav-toggle{display:none;background:none;border:none;font-size:24px;}
+  .nav-mobile{display:none;flex-direction:column;gap:16px;padding-bottom:16px;}
+  .nav-mobile button.link{background:none;border:none;text-align:left;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;}
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .nav-toggle{display:block;}
+    .nav-mobile.open{display:flex;}
+  }
+
+  /* ---------- Ticker ---------- */
+  .ticker{background:var(--ink);overflow:hidden;padding:10px 0;border-bottom:3px solid var(--primary);}
+  .ticker-track{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:ticker 22s linear infinite;}
+  .ticker-item{display:flex;align-items:center;gap:40px;font-family:'Syne',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--yellow);}
+  .ticker-item .star{color:var(--red);font-size:14px;}
+  @keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;background:var(--primary);border-bottom:3px solid var(--ink);overflow:hidden;min-height:82vh;display:flex;align-items:center;}
+  .hero-bg{position:absolute;inset:0;}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.15;}
+  .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right, var(--primary) 0%, rgba(212,135,30,.95) 50%, rgba(212,135,30,.7) 100%);}
+  .hero-side{position:absolute;right:0;top:0;bottom:0;width:40%;display:flex;gap:16px;padding:32px;align-items:center;}
+  .hero-side div{flex:1;border:4px solid var(--ink);overflow:hidden;transition:transform .3s;}
+  .hero-side div:first-child{height:70%;transform:rotate(2deg);}
+  .hero-side div:last-child{height:60%;transform:rotate(-3deg);}
+  .hero-side div:hover{transform:rotate(0);}
+  .hero-side img{width:100%;height:100%;object-fit:cover;}
+  @media (max-width:1024px){.hero-side{display:none;}}
+  .hero-content{position:relative;z-index:2;max-width:650px;padding:60px 0;}
+  .hero-content h1{font-size:clamp(42px,7vw,84px);font-weight:800;line-height:.95;letter-spacing:-.02em;margin-bottom:24px;}
+  .hero-content h1 .accent{color:var(--red);}
+  .hero-content h1 .cream{color:var(--bg);}
+  .hero-content p{max-width:460px;margin-bottom:36px;opacity:.9;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:16px;}
+
+  /* ---------- About ---------- */
+  .about{display:grid;border-bottom:3px solid var(--ink);}
+  @media (min-width:960px){.about{grid-template-columns:1fr 1fr;}}
+  .about-left{background:var(--bg);padding:60px;border-right:0;position:relative;overflow:hidden;}
+  @media (min-width:960px){.about-left{border-right:3px solid var(--ink);}}
+  .about-left h2{font-size:clamp(24px,3vw,36px);font-weight:800;line-height:1.15;margin-bottom:20px;}
+  .about-left h2 .accent{color:var(--primary);}
+  .about-left p{font-size:14px;color:#3a2e1f;margin-bottom:16px;}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--ink);border:2px solid var(--ink);margin-top:32px;}
+  .stat{background:var(--bg);padding:20px;text-align:center;}
+  .stat .num{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--primary);line-height:1;}
+  .stat .label{font-size:10px;color:var(--muted);margin-top:6px;}
+  .about-right{background:var(--green);padding:60px;}
+  .about-right h3{font-size:clamp(22px,3vw,32px);font-weight:800;color:var(--bg);line-height:1.15;margin-bottom:24px;}
+  .service-item{background:rgba(253,246,237,.08);border:1.5px solid rgba(253,246,237,.15);padding:16px;display:flex;align-items:center;gap:16px;margin-bottom:2px;transition:background .2s;}
+  .service-item:hover{background:rgba(253,246,237,.14);}
+  .service-item .n{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--yellow);min-width:28px;}
+  .service-item .t{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--bg);}
+
+  /* ---------- Section header (shared) ---------- */
+  .section{padding:70px 0;border-bottom:3px solid var(--ink);}
+  .section-head{text-align:center;max-width:680px;margin:0 auto 48px;}
+  .section-head h2{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.05;margin-bottom:16px;}
+  .section-head h2 .accent{color:var(--primary);}
+  .section-head p{font-size:17px;opacity:.8;}
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;background:var(--ink);padding:12px;}
+  @media (min-width:640px){.gallery-grid{grid-template-columns:repeat(4,1fr);}}
+  @media (min-width:960px){.gallery-grid{grid-template-columns:repeat(5,1fr);}}
+  .gallery-item{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;}
+  .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+  .gallery-item:hover img{transform:scale(1.1);}
+  .gallery-caption{position:absolute;inset:0;background:linear-gradient(to top, var(--ink), transparent 60%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:14px;}
+  .gallery-item:hover .gallery-caption{opacity:1;}
+  .gallery-caption span{color:var(--yellow);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+  .gallery-note{text-align:center;margin-top:32px;font-size:13px;color:var(--muted);font-style:italic;}
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:200;display:none;align-items:center;justify-content:center;padding:16px;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:100%;max-height:90vh;object-fit:contain;}
+  .lightbox-close{position:absolute;top:16px;right:24px;color:var(--primary);font-size:38px;background:none;border:none;font-weight:700;}
+
+  /* ---------- Videos ---------- */
+  .videos{background:var(--ink);border-bottom:3px solid var(--primary);color:var(--bg);}
+  .videos .section-head p{color:rgba(253,246,237,.7);}
+  .video-grid{display:grid;gap:24px;}
+  @media (min-width:768px){.video-grid{grid-template-columns:repeat(3,1fr);}}
+  .video-card{cursor:pointer;}
+  .video-thumb{position:relative;overflow:hidden;border:3px solid var(--primary);aspect-ratio:16/9;background:#3a2e1f;margin-bottom:16px;}
+  .video-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+  .video-card:hover .video-thumb img{transform:scale(1.05);}
+  .play-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .video-card:hover .play-overlay{background:rgba(0,0,0,.6);}
+  .play-btn{width:60px;height:60px;background:var(--primary);border:2px solid var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s;}
+  .video-card:hover .play-btn{transform:scale(1.1);}
+  .play-btn::before{content:'';border-left:16px solid var(--bg);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;}
+  .video-card h3{font-size:17px;font-weight:700;margin-bottom:8px;}
+  .video-card:hover h3{color:var(--yellow);}
+  .video-card p{font-size:14px;color:rgba(253,246,237,.6);}
+  .video-modal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:200;display:none;align-items:center;justify-content:center;padding:16px;}
+  .video-modal.open{display:flex;}
+  .video-modal-inner{background:var(--bg);border:4px solid var(--primary);max-width:820px;width:100%;}
+  .video-modal-head{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:2px solid var(--ink);}
+  .video-modal-head h3{color:var(--ink);font-size:19px;font-weight:700;}
+  .video-modal-head button{background:none;border:none;font-size:24px;color:var(--ink);}
+  .video-modal-body{aspect-ratio:16/9;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;}
+  .video-modal-foot{padding:16px;border-top:2px solid var(--ink);font-size:14px;color:#3a2e1f;}
+
+  /* ---------- Film Slate ---------- */
+  .films-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:48px;}
+  .films-head h2{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.05;}
+  .films-head h2 .accent{color:var(--primary);}
+  .films-tag{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--red);background:#fce8e6;border:1.5px solid var(--red);padding:8px 16px;}
+  .film-grid{display:grid;gap:3px;background:var(--ink);}
+  @media (min-width:768px){.film-grid{grid-template-columns:repeat(3,1fr);}}
+  .film-card{background:var(--bg);padding:32px;border-top:4px solid;}
+  .film-card .genre{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;margin-bottom:12px;}
+  .film-card h3{font-size:22px;font-weight:800;margin-bottom:12px;}
+  .film-card p{font-size:13px;color:#5a4a30;margin-bottom:24px;}
+  .film-card .foot{display:flex;justify-content:space-between;align-items:center;}
+  .film-card .foot .yr{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--tan);}
+  .film-card .foot .badge{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;background:var(--yellow);color:var(--ink);padding:4px 10px;border:1.5px solid var(--ink);}
+
+  /* ---------- Services ---------- */
+  .services-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:48px;}
+  .services-head .eyebrow-text{font-size:11px;letter-spacing:.25em;color:var(--primary);text-transform:uppercase;margin-bottom:8px;}
+  .services-head h2{font-size:clamp(34px,5vw,56px);font-weight:800;line-height:1;letter-spacing:-.02em;}
+  .service-tabs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:32px;}
+  @media (min-width:768px){.service-tabs{grid-template-columns:repeat(4,1fr);}}
+  .service-tab{border:2px solid;background:transparent;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;padding:10px 12px;border-radius:2px;transition:all .2s;}
+  .service-detail{display:grid;border-radius:4px;overflow:hidden;border:3px solid;}
+  @media (min-width:768px){.service-detail{grid-template-columns:1fr 1fr;}}
+  .service-info{background:var(--ink);padding:40px;}
+  .service-info .num{font-family:'Syne',sans-serif;font-size:80px;font-weight:800;opacity:.25;line-height:1;display:block;margin-bottom:-16px;}
+  .service-info h3{font-size:26px;font-weight:800;color:var(--bg);line-height:1.1;margin-bottom:16px;}
+  .service-info p{font-size:15px;color:#bbb;line-height:1.7;margin-bottom:28px;}
+  .service-info button{font-family:'Syne',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;border:none;border-radius:2px;color:var(--ink);}
+  .service-offerings{padding:40px;}
+  .service-offerings .label{font-size:11px;letter-spacing:.2em;color:var(--ink);text-transform:uppercase;margin-bottom:20px;opacity:.6;}
+  .service-offerings ul{list-style:none;}
+  .service-offerings li{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;color:var(--ink);padding:14px 0;border-bottom:1px solid rgba(26,18,9,.2);display:flex;align-items:center;gap:12px;}
+  .service-offerings li::before{content:'◆';font-size:10px;opacity:.5;}
+
+  /* ---------- Modals (booking / fund confirmation) ---------- */
+  .modal-overlay{position:fixed;inset:0;background:rgba(26,18,9,.85);z-index:300;display:none;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.open{display:flex;}
+  .modal-box{background:var(--bg);width:100%;max-width:560px;max-height:90vh;overflow-y:auto;border-radius:4px;padding:40px;position:relative;}
+  .modal-close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;color:var(--ink);}
+  .modal-box h3{font-size:26px;font-weight:800;margin-bottom:4px;}
+  .modal-box .bar{width:40px;height:4px;background:var(--primary);margin-bottom:12px;}
+  .modal-box .sub{font-size:14px;color:#666;}
+  .form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .form-field label{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+  .form-field input,.form-field select,.form-field textarea{width:100%;padding:12px 14px;background:#fff;border:2px solid #e8d5b8;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--ink);outline:none;}
+  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--primary);}
+  .modal-submit{width:100%;background:var(--ink);color:var(--bg);font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;padding:16px;border:none;border-radius:2px;margin-top:8px;}
+  .modal-success{text-align:center;padding:40px 0;}
+  .modal-success .emoji{font-size:48px;margin-bottom:16px;}
+
+  /* ---------- Partners ---------- */
+  .partner-filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+  .partner-filters button{border:2px solid var(--ink);background:transparent;color:var(--ink);font-family:'Syne',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding:8px 18px;}
+  .partner-filters button.active{background:var(--ink);color:var(--bg);}
+  .partner-grid{display:grid;grid-template-columns:1fr;gap:2px;background:var(--ink);}
+  @media (min-width:640px){.partner-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (min-width:960px){.partner-grid{grid-template-columns:repeat(4,1fr);}}
+  .partner-card{background:var(--bg);padding:28px;border-top:4px solid;display:flex;flex-direction:column;gap:14px;}
+  .partner-logo{height:64px;display:flex;align-items:center;justify-content:center;}
+  .partner-logo img{max-height:64px;max-width:100%;object-fit:contain;}
+  .partner-logo .initials{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:#fff;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .partner-card h4{font-size:17px;font-weight:800;}
+  .partner-card .role{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;}
+  .partner-card p{font-size:13px;color:#5a4a30;}
+
+  /* ---------- Fund a Film ---------- */
+  .fund{display:grid;border-bottom:3px solid var(--ink);}
+  @media (min-width:960px){.fund{grid-template-columns:1fr 1fr;}}
+  .fund-left{background:var(--red);padding:60px;color:var(--bg);}
+  @media (min-width:960px){.fund-left{border-right:3px solid var(--ink);}}
+  .fund-left h2{font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.05;margin-bottom:20px;}
+  .fund-left h2 .accent{color:var(--yellow);}
+  .fund-left>p{font-size:14px;color:rgba(253,246,237,.8);margin-bottom:32px;}
+  .perk{padding:16px 0;border-bottom:1.5px solid rgba(253,246,237,.2);display:flex;gap:16px;align-items:flex-start;}
+  .perk .icon{font-size:17px;margin-top:2px;}
+  .perk p{font-size:13px;color:rgba(253,246,237,.75);}
+  .perk strong{color:var(--bg);font-weight:500;}
+  .fund-right{background:var(--bg);padding:60px;}
+  .fund-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .fund-success{background:var(--green);border:2px solid var(--ink);padding:24px;text-align:center;}
+  .fund-success p{color:var(--bg);font-family:'Syne',sans-serif;font-size:18px;font-weight:600;}
+  .fund-note{font-size:12px;color:#8a7555;}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--yellow);border-bottom:3px solid var(--ink);padding:70px 0;}
+  .contact .wrap{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;}
+  .contact h2{font-size:clamp(26px,3.5vw,44px);font-weight:800;line-height:1.1;margin-bottom:8px;}
+  .contact>.wrap>div>p{font-size:14px;opacity:.7;margin-bottom:24px;}
+  .contact-links{display:flex;gap:16px;flex-wrap:wrap;}
+  .contact-links a{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:8px 16px;transition:background .2s;}
+  .contact-email{font-size:clamp(18px,2.5vw,28px);font-weight:800;border-bottom:3px solid var(--ink);padding-bottom:6px;}
+  .contact-email:hover{color:var(--red);}
+
+  /* ---------- Footer ---------- */
+  footer{background:#0e0a05;}
+  .footer-faq{background:var(--ink);padding:80px 0;}
+  .footer-faq .grid2{display:grid;gap:64px;max-width:1100px;margin:0 auto;padding:0 24px;}
+  @media (min-width:768px){.footer-faq .grid2{grid-template-columns:1fr 1fr;}}
+  .footer-faq h3{font-size:22px;font-weight:800;color:var(--bg);margin-bottom:20px;}
+  .faq-item{border-bottom:1px solid #2a1f14;}
+  .faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;background:none;border:none;text-align:left;}
+  .faq-q span.q{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--bg);}
+  .faq-item.open .faq-q span.q{color:var(--primary);}
+  .faq-q span.plus{color:var(--primary);font-size:20px;transition:transform .2s;}
+  .faq-item.open .faq-q span.plus{transform:rotate(45deg);}
+  .faq-a{display:none;font-size:14px;color:#888;line-height:1.7;padding-bottom:16px;}
+  .faq-item.open .faq-a{display:block;}
+  .loc-card{display:flex;align-items:center;gap:16px;padding:18px 20px;background:#231a10;border-radius:4px;border-left:4px solid;margin-bottom:10px;}
+  .loc-card .flag{font-size:28px;}
+  .loc-card .city{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--bg);}
+  .loc-card .detail{font-size:12px;letter-spacing:.1em;text-transform:uppercase;}
+  .follow-label{font-size:11px;letter-spacing:.2em;color:#555;text-transform:uppercase;margin:28px 0 12px;}
+  .follow-link{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .follow-link .plat{font-size:11px;color:#555;width:60px;text-transform:uppercase;letter-spacing:.08em;}
+  .follow-link .handle{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--primary);}
+  .footer-bottom{padding:24px;}
+  .footer-bottom .wrap{max-width:1100px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;}
+  .footer-bottom p{font-size:12px;color:#3a2a14;}
+  .footer-bottom .links{display:flex;gap:20px;}
+  .footer-bottom button{background:none;border:none;font-size:12px;color:#3a2a14;text-decoration:underline;}
+  .privacy-modal{position:fixed;inset:0;background:rgba(14,10,5,.92);z-index:400;display:none;align-items:center;justify-content:center;padding:20px;}
+  .privacy-modal.open{display:flex;}
+  .privacy-box{background:var(--ink);width:100%;max-width:600px;max-height:80vh;overflow-y:auto;border-radius:4px;padding:40px;position:relative;border:2px solid #2a1f14;}
+  .privacy-box .close{position:absolute;top:16px;right:20px;background:none;border:none;font-size:22px;color:var(--bg);}
+  .privacy-box h3{font-size:24px;font-weight:800;color:var(--bg);margin:16px 0 20px;}
+  .privacy-box h4{font-size:14px;font-weight:800;color:var(--primary);margin-bottom:6px;}
+  .privacy-box p{font-size:14px;color:#888;line-height:1.7;margin-bottom:20px;}
+
+  @media (max-width:768px){
+    .about-left,.about-right,.fund-left,.fund-right{padding:36px 24px;}
+    .service-info,.service-offerings{padding:28px 24px;}
+    .fund-form-grid{grid-template-columns:1fr;}
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <span class="logo-text">ELEWA TV</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#films">Films</a></li>
-      <li><a href="#fund">Fund a Film</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-cta" onclick="document.getElementById('fund').scrollIntoView({behavior:'smooth'})">Submit Your Project</button>
-  </nav>
 
-  <section class="hero">
-    <div class="hero-pattern"></div>
-    <div class="hero-content">
-      <div class="hero-tag">A Visual Production Company</div>
-      <h1 class="hero-title">Stories That<br><span class="accent2">Redefine</span><br><span class="accent">Beautiful.</span></h1>
-      <p class="hero-sub">ELEWA TV is a women-owned African creative production house. We make bold films, fund visionary storytellers, and build legacies for the diaspora — and the world.</p>
-      <div class="hero-actions">
-        <button class="btn-dark" onclick="document.getElementById('films').scrollIntoView({behavior:'smooth'})">See Our 2027 Slate</button>
-        <button class="btn-outline" onclick="document.getElementById('fund').scrollIntoView({behavior:'smooth'})">Fund a Film</button>
-      </div>
+<!-- ================= NAV ================= -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="images/logo-elewatv.png" alt="ELEWA TV" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <span class="fallback" style="display:none;">ELEWA TV</span>
+    </a>
+    <div class="nav-links">
+      <button class="link" data-scroll="about">About</button>
+      <button class="link" data-scroll="films">Films</button>
+      <button class="link" data-scroll="services">Services</button>
+      <button class="link" data-scroll="partners">Partners</button>
+      <button class="link" data-scroll="fund">Fund a Film</button>
+      <button class="nav-book" data-scroll="services">Book Us</button>
     </div>
-  </section>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </div>
+  <div class="nav-mobile wrap" id="navMobile">
+    <button class="link" data-scroll="about">About</button>
+    <button class="link" data-scroll="films">Films</button>
+    <button class="link" data-scroll="services">Services</button>
+    <button class="link" data-scroll="partners">Partners</button>
+    <button class="link" data-scroll="fund">Fund a Film</button>
+    <button class="nav-book" data-scroll="services" style="align-self:flex-start;">Book Us</button>
+  </div>
+</nav>
 
-  <div class="ticker">
-    <div class="ticker-inner">
-      <span class="ticker-item">African Storytelling</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Visual Production</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Film Funding</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Coming 2027</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Women-Owned</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Diaspora Stories</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Submit Your Project</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">African Storytelling</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Visual Production</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Film Funding</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Coming 2027</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Women-Owned</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Diaspora Stories</span><span class="ticker-dot">★</span>
-      <span class="ticker-item">Submit Your Project</span><span class="ticker-dot">★</span>
+<!-- ================= TICKER ================= -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-bg"><img src="images/WebRes-AbbyHair-0098.jpg" alt="ELEWA TV Creative Vision"></div>
+  <div class="hero-side">
+    <div><img src="images/WebRes-AbbyHair-0143.jpg" alt="Creative Vision"></div>
+    <div><img src="images/WebRes-AbbyHair-0187.jpg" alt="African Storytelling"></div>
+  </div>
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="eyebrow">A Visual Production Company</div>
+      <h1>Stories That<br><span class="accent">Redefine</span><br><span class="cream">Beautiful.</span></h1>
+      <p>ELEWA TV is a women-owned African creative production house. We make bold films, fund visionary storytellers, and build legacies for the diaspora — and the world.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-red" href="https://www.youtube.com/@elewatvofficial" target="_blank" rel="noopener noreferrer">▶ Watch 24/7 Daily</a>
+        <button class="btn btn-dark" data-scroll="films">See Our 2027 Slate</button>
+        <button class="btn btn-outline" data-scroll="fund">Fund a Film</button>
+      </div>
     </div>
   </div>
+</section>
 
-  <section id="about" class="about">
-    <div class="about-left">
-      <div class="section-tag">About ELEWA TV</div>
-      <h2 class="about-headline">Where <span class="pop">African</span> Creativity Meets the World Stage.</h2>
-      <p class="about-body">Elewa means "beautiful" — and for us, beauty is a creative act of resistance. Founded by women, powered by the diaspora, ELEWA TV has evolved from a creative network into a full-scale visual production company, with an inaugural film slate debuting in 2027.</p>
-      <p class="about-body">We produce. We fund. We platform. Narrative film, documentary, branded content — always rooted in African and diasporic experience.</p>
-      <div class="stat-row">
-        <div class="stat"><div class="stat-num">2027</div><div class="stat-label">Debut Film Year</div></div>
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Women-Owned</div></div>
-        <div class="stat"><div class="stat-num">NYC</div><div class="stat-label">Founded In</div></div>
-        <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Stories to Tell</div></div>
-      </div>
+<!-- ================= ABOUT ================= -->
+<section id="about" class="about">
+  <div class="about-left">
+    <div class="eyebrow">About ELEWA TV</div>
+    <h2>Where <span class="accent">African</span> Creativity Meets the World Stage.</h2>
+    <p>Elewa means "beautiful" — and for us, beauty is a creative act of resistance. Founded by women, powered by the diaspora, ELEWA TV has evolved from a creative network into a full-scale visual production company, with an inaugural film slate debuting in 2027.</p>
+    <p>We produce. We fund. We platform. Narrative film, documentary, branded content — always rooted in African and diasporic experience.</p>
+    <div class="stat-grid">
+      <div class="stat"><div class="num">2027</div><div class="label">Debut Film Year</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">Women-Owned</div></div>
+      <div class="stat"><div class="num">NYC</div><div class="label">Founded In</div></div>
+      <div class="stat"><div class="num">∞</div><div class="label">Stories to Tell</div></div>
     </div>
-    <div class="about-right">
-      <div class="section-tag light">What We Do</div>
-      <h3 class="about-right-headline">We Do It All — From Vision to Screen.</h3>
-      <div class="pillars">
-        <div class="pillar"><span class="pillar-num">01</span><span class="pillar-text">Narrative Film Production</span></div>
-        <div class="pillar"><span class="pillar-num">02</span><span class="pillar-text">Documentary & Short Film</span></div>
-        <div class="pillar"><span class="pillar-num">03</span><span class="pillar-text">Film Financing & Co-Production</span></div>
-        <div class="pillar"><span class="pillar-num">04</span><span class="pillar-text">Talent & Casting</span></div>
-        <div class="pillar"><span class="pillar-num">05</span><span class="pillar-text">Art Direction & Visual Identity</span></div>
-        <div class="pillar"><span class="pillar-num">06</span><span class="pillar-text">Creator Development</span></div>
-      </div>
-    </div>
-  </section>
+  </div>
+  <div class="about-right">
+    <div class="eyebrow on-dark">What We Do</div>
+    <h3>We Do It All — From Vision to Screen.</h3>
+    <div id="serviceList"></div>
+  </div>
+</section>
 
-  <section id="films" class="films">
-    <div class="films-content">
-      <div class="films-header">
-        <div>
-          <div class="section-tag">2027 Film Slate</div>
-          <h2 class="films-title">Coming to Screens<br><span class="pop">Near You.</span></h2>
-        </div>
-        <span class="coming">Titles Dropping Soon</span>
-      </div>
-      <div class="film-grid">
-        <div class="film-card">
-          <p class="film-genre">Narrative Feature</p>
-          <h3 class="film-title">Title TBA</h3>
-          <p class="film-desc">A feature film in development. Details coming soon — follow us for the official announcement and teaser drop.</p>
-          <div class="film-meta">
-            <span class="film-year">ELEWA TV · 2027</span>
-            <span class="film-badge">In Development</span>
-          </div>
-        </div>
-        <div class="film-card">
-          <p class="film-genre">Documentary</p>
-          <h3 class="film-title">Title TBA</h3>
-          <p class="film-desc">An untold story from the African diaspora. Production underway — trailer and cast announcement coming soon.</p>
-          <div class="film-meta">
-            <span class="film-year">ELEWA TV · 2027</span>
-            <span class="film-badge">In Development</span>
-          </div>
-        </div>
-        <div class="film-card">
-          <p class="film-genre">Short Film</p>
-          <h3 class="film-title">Title TBA</h3>
-          <p class="film-desc">An ELEWA-backed short from an emerging director. Festival circuit planned. Watch this space.</p>
-          <div class="film-meta">
-            <span class="film-year">ELEWA TV · 2027</span>
-            <span class="film-badge">In Development</span>
-          </div>
-        </div>
-      </div>
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our Work</div>
+      <h2>Visual <span class="accent">Storytelling</span></h2>
+      <p>From fashion editorials to cultural narratives — our lens captures the essence of African creativity</p>
     </div>
-  </section>
+    <div class="gallery-grid" id="galleryGrid"></div>
+    <p class="gallery-note">Photography showcasing the creative vision behind our productions</p>
+  </div>
+</section>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">×</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
-  <section id="fund" class="fund">
-    <div class="fund-left">
-      <div class="section-tag">Fund a Film</div>
-      <h2 class="fund-headline">We Back<br><span class="pop">Bold</span><br>African Visions.</h2>
-      <p class="fund-body">ELEWA TV is actively seeking film projects from African and diasporic creatives to co-produce, fund, and bring to global audiences. If you have a story that needs to be told — we want to hear it.</p>
-      <div class="fund-perks">
-        <div class="fund-perk"><div class="perk-icon">🎬</div><div class="perk-text"><strong>Co-production funding</strong> for features, docs, and shorts</div></div>
-        <div class="fund-perk"><div class="perk-icon">✍🏾</div><div class="perk-text"><strong>Creative development</strong> — script, casting, art direction</div></div>
-        <div class="fund-perk"><div class="perk-icon">🌍</div><div class="perk-text"><strong>Distribution strategy</strong> and festival submission support</div></div>
-        <div class="fund-perk"><div class="perk-icon">✊🏾</div><div class="perk-text"><strong>African & diaspora stories</strong> always prioritised</div></div>
+<!-- ================= VIDEOS ================= -->
+<section id="videos" class="section videos">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow on-dark">Watch Now</div>
+      <h2>24/7 Daily <span class="accent" style="color:var(--yellow);">&</span> More</h2>
+      <p style="margin-bottom:24px;">Explore our latest videos, behind-the-scenes content, and film previews</p>
+      <a class="btn btn-red" href="https://www.youtube.com/@elewatvofficial" target="_blank" rel="noopener noreferrer" style="border-color:var(--bg);">▶ Subscribe on YouTube</a>
+    </div>
+    <div class="video-grid" id="videoGrid"></div>
+  </div>
+</section>
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <div class="video-modal-head">
+      <h3 id="videoModalTitle"></h3>
+      <button id="videoModalClose">×</button>
+    </div>
+    <div class="video-modal-body">
+      <div>
+        <p style="font-size:28px;margin-bottom:8px;">🎬</p>
+        <p>Video player ready</p>
+        <p style="font-size:13px;opacity:.6;margin-top:8px;">Add your video URL to play</p>
       </div>
     </div>
-    <div class="fund-right">
-      <div class="form-tag">Submit Your Project</div>
-      <form class="fund-form" id="projectForm">
-        <div class="form-row">
-          <div class="form-field">
-            <label class="form-label">Your Name</label>
-            <input class="form-input" type="text" name="name" placeholder="Full name" required>
-          </div>
-          <div class="form-field">
-            <label class="form-label">Email</label>
-            <input class="form-input" type="email" name="email" placeholder="you@email.com" required>
-          </div>
+    <div class="video-modal-foot" id="videoModalDesc"></div>
+  </div>
+</div>
+
+<!-- ================= FILM SLATE ================= -->
+<section id="films" class="section">
+  <div class="wrap">
+    <div class="films-head">
+      <div>
+        <div class="eyebrow">2027 Film Slate</div>
+        <h2>Coming to Screens<br><span class="accent">Near You.</span></h2>
+      </div>
+      <span class="films-tag">Titles Dropping Soon</span>
+    </div>
+    <div class="film-grid" id="filmGrid"></div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section id="services" class="section">
+  <div class="wrap">
+    <div class="services-head">
+      <div>
+        <p class="eyebrow-text">What We Do</p>
+        <h2>Our Services</h2>
+      </div>
+      <button class="btn btn-dark" id="openBooking">Book Us →</button>
+    </div>
+    <div class="service-tabs" id="serviceTabs"></div>
+    <div class="service-detail" id="serviceDetail"></div>
+  </div>
+</section>
+
+<!-- Booking Modal -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="bookingModal">×</button>
+    <div id="bookingSuccess" class="modal-success" style="display:none;">
+      <div class="emoji">🎬</div>
+      <h3>We got your message!</h3>
+      <p style="color:#555;">The ELEWA team will be in touch within 2–3 business days. We can't wait to create with you.</p>
+    </div>
+    <form id="bookingForm">
+      <div class="bar"></div>
+      <h3>Book ELEWA TV</h3>
+      <p class="sub" style="margin-bottom:24px;">Tell us about your project and we'll get back to you.</p>
+      <div class="form-field"><label>Your Name *</label><input type="text" name="name" required></div>
+      <div class="form-field"><label>Email Address *</label><input type="email" name="email" required></div>
+      <div class="form-field"><label>Organisation / Company</label><input type="text" name="organisation"></div>
+      <div class="form-field"><label>Service *</label>
+        <select id="bookingServiceSelect" name="service" required><option value="">Select a service…</option></select>
+      </div>
+      <div class="form-field"><label>Budget Range</label>
+        <select name="budget"><option value="">Prefer not to say</option><option>Under £1,000</option><option>£1,000 – £5,000</option><option>£5,000 – £15,000</option><option>£15,000 – £50,000</option><option>£50,000+</option></select>
+      </div>
+      <div class="form-field"><label>Tell us about your project *</label><textarea name="message" rows="4" required placeholder="Describe your project, timeline, and any specific requirements…"></textarea></div>
+      <button type="submit" class="modal-submit">Send Enquiry →</button>
+    </form>
+  </div>
+</div>
+
+<!-- ================= PARTNERS ================= -->
+<section id="partners" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Who We Work With</div>
+      <h2>Partners <span class="accent">&amp;</span> Clients</h2>
+      <p>Organisations and creatives we've built alongside</p>
+    </div>
+    <div class="partner-filters" id="partnerFilters"></div>
+    <div class="partner-grid" id="partnerGrid"></div>
+  </div>
+</section>
+
+<!-- ================= FUND A FILM ================= -->
+<section id="fund" class="fund">
+  <div class="fund-left">
+    <div class="eyebrow on-dark">Fund a Film</div>
+    <h2>We Back<br><span class="accent">Bold</span><br>African Visions.</h2>
+    <p>ELEWA TV is actively seeking film projects from African and diasporic creatives to co-produce, fund, and bring to global audiences. If you have a story that needs to be told — we want to hear it.</p>
+    <div id="perkList"></div>
+  </div>
+  <div class="fund-right">
+    <div class="eyebrow">Submit Your Project</div>
+    <div id="fundSuccess" class="fund-success" style="display:none;">
+      <p>Submitted! We'll review and get back to you within 4–6 weeks.</p>
+    </div>
+    <form id="fundForm">
+      <div class="fund-form-grid">
+        <div class="form-field"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required></div>
+        <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required></div>
+      </div>
+      <div class="fund-form-grid">
+        <div class="form-field"><label>Project Title</label><input type="text" name="projectTitle" placeholder="Working title" required></div>
+        <div class="form-field"><label>Format</label>
+          <select name="format" required><option value="">Select format</option><option>Narrative Feature</option><option>Documentary</option><option>Short Film</option><option>Series / Episodic</option><option>Other</option></select>
         </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label class="form-label">Project Title</label>
-            <input class="form-input" type="text" name="title" placeholder="Working title" required>
-          </div>
-          <div class="form-field">
-            <label class="form-label">Format</label>
-            <select class="form-input" name="format" required>
-              <option value="">Select format</option>
-              <option>Narrative Feature</option>
-              <option>Documentary</option>
-              <option>Short Film</option>
-              <option>Series / Episodic</option>
-              <option>Other</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Project Synopsis</label>
-          <textarea class="form-textarea" name="synopsis" placeholder="Tell us about your story — genre, themes, where it's set..." required></textarea>
-        </div>
-        <div class="form-field">
-          <label class="form-label">Development Stage</label>
-          <select class="form-input" name="stage" required>
-            <option value="">Where are you?</option>
-            <option>Concept / Idea Stage</option>
-            <option>Script in Progress</option>
-            <option>Script Complete</option>
-            <option>In Pre-Production</option>
-            <option>Seeking Post-Production Funding</option>
-          </select>
-        </div>
-        <p class="form-note">We review all submissions and respond within 4–6 weeks. African and diaspora-led projects are especially encouraged to apply.</p>
-        <button type="submit" class="btn-submit">Submit Project →</button>
-      </form>
-      <div id="successMessage" class="success-message">
-        Submitted! We'll review and get back to you within 4–6 weeks.
+      </div>
+      <div class="form-field"><label>Project Synopsis</label><textarea name="synopsis" rows="3" required placeholder="Tell us about your story — genre, themes, where it's set..."></textarea></div>
+      <div class="form-field"><label>Development Stage</label>
+        <select name="stage" required><option value="">Where are you?</option><option>Concept / Idea Stage</option><option>Script in Progress</option><option>Script Complete</option><option>In Pre-Production</option><option>Seeking Post-Production Funding</option></select>
+      </div>
+      <p class="fund-note">We review all submissions and respond within 4–6 weeks. African and diaspora-led projects are especially encouraged to apply.</p>
+      <button type="submit" class="btn btn-red" style="margin-top:16px;">Submit Project →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Let's Make<br>Something Beautiful.</h2>
+      <p>Productions, partnerships, press, and general enquiries welcome.</p>
+      <div class="contact-links">
+        <a href="https://www.youtube.com/@elewatvofficial" target="_blank" rel="noopener noreferrer" style="background:var(--red);color:var(--bg);">YouTube</a>
+        <a href="https://www.instagram.com/elewatv/" target="_blank" rel="noopener noreferrer" style="background:var(--ink);color:var(--yellow);">@elewatv</a>
+        <a href="https://www.instagram.com/the.creative.chat/" target="_blank" rel="noopener noreferrer" style="background:var(--ink);color:var(--yellow);">The Creative Chat</a>
+        <a href="#" style="background:var(--ink);color:var(--yellow);">Press Kit</a>
       </div>
     </div>
-  </section>
+    <a class="contact-email" href="mailto:Info@elewatv.com">Info@elewatv.com</a>
+  </div>
+</section>
 
-  <section id="contact" class="contact">
-    <div class="contact-content">
-      <div class="contact-left">
-        <div class="contact-tag">Get In Touch</div>
-        <h2 class="contact-headline">Let's Make<br>Something Beautiful.</h2>
-        <p class="contact-sub">Productions, partnerships, press, and general enquiries welcome.</p>
-        <div class="contact-links">
-          <a class="contact-link" href="https://instagram.com/elewatv" target="_blank">Instagram</a>
-          <a class="contact-link" href="#">The Creative Chat</a>
-          <a class="contact-link" href="#">Press Kit</a>
-        </div>
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="footer-faq">
+    <div class="grid2">
+      <div>
+        <h3>Frequently Asked Questions</h3>
+        <div id="faqList"></div>
       </div>
-      <a href="mailto:Info@elewatv.com" class="contact-email">Info@elewatv.com</a>
+      <div>
+        <h3>Find Us</h3>
+        <div class="loc-card" style="border-color:var(--primary);">
+          <span class="flag">🇺🇸</span>
+          <div><p class="city">New York, NY</p><p class="detail" style="color:var(--primary);">Headquarters — USA</p></div>
+        </div>
+        <div class="loc-card" style="border-color:var(--green);">
+          <span class="flag">🇳🇬</span>
+          <div><p class="city">Lagos, Nigeria</p><p class="detail" style="color:var(--green);">Africa Office</p></div>
+        </div>
+        <p class="follow-label">Follow Us</p>
+        <a class="follow-link" href="https://www.instagram.com/elewatv/" target="_blank" rel="noopener noreferrer"><span class="plat">Instagram</span><span class="handle">@elewatv</span></a>
+        <a class="follow-link" href="https://www.instagram.com/the.creative.chat/" target="_blank" rel="noopener noreferrer"><span class="plat">Instagram</span><span class="handle">@the.creative.chat</span></a>
+        <a class="follow-link" href="https://www.youtube.com/@elewatvofficial" target="_blank" rel="noopener noreferrer"><span class="plat">YouTube</span><span class="handle">@elewatvofficial</span></a>
+      </div>
     </div>
-  </section>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">ELEWA TV · Visual Production</div>
-      <p class="footer-copy">© 2025 ELEWA LLC · Albany, NY · Women-Owned · African Creative Network</p>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap" style="margin:0 auto;">
+      <p>© 2026 ELEWA LLC · New York, NY &amp; Lagos, Nigeria · Women-Owned · African Creative Network</p>
+      <div class="links">
+        <button data-open="privacyModal">Privacy Policy</button>
+        <button data-open="privacyModal">Terms of Use</button>
+      </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-    document.getElementById('projectForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.querySelector('.fund-form').style.display = 'none';
-      document.getElementById('successMessage').style.display = 'block';
-      setTimeout(function() {
-        document.querySelector('.fund-form').style.display = 'flex';
-        document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('projectForm').reset();
-      }, 4000);
-    });
-    
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-  </script>
+<div class="privacy-modal" id="privacyModal">
+  <div class="privacy-box">
+    <button class="close" data-close="privacyModal">×</button>
+    <div class="bar" style="width:40px;height:4px;background:var(--primary);margin-bottom:16px;"></div>
+    <h3>Privacy Policy</h3>
+    <h4>Information We Collect</h4>
+    <p>We collect information you voluntarily provide when contacting us or submitting a booking enquiry, including your name, email address, and project details. We do not sell or share your personal data with third parties.</p>
+    <h4>How We Use Your Information</h4>
+    <p>Your information is used solely to respond to your enquiry, process bookings, and send relevant updates about ELEWA TV projects and events. You may opt out at any time.</p>
+    <h4>Data Storage</h4>
+    <p>All data is stored securely. As a company operating across New York, NY and Lagos, Nigeria, we comply with applicable US and Nigerian data protection regulations.</p>
+    <h4>Cookies</h4>
+    <p>This site may use cookies to improve your browsing experience. No personally identifiable information is stored in cookies.</p>
+    <h4>Contact</h4>
+    <p>For any privacy-related questions, contact us via the enquiry form on this site or through our social channels @elewatv.</p>
+  </div>
+</div>
+
+<script>
+/* ================= CONTENT PROTECTION ================= */
+/* Blocks right-click, text selection/copy, and image dragging.
+   Note: this deters casual copying but cannot fully stop a determined
+   person (e.g. viewing page source, browser dev tools, or screenshots)
+   — no front-end technique can. */
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('selectstart', e => {
+  const tag = e.target.tagName;
+  if (tag !== 'INPUT' && tag !== 'TEXTAREA') e.preventDefault();
+});
+document.addEventListener('copy', e => {
+  const tag = document.activeElement.tagName;
+  if (tag !== 'INPUT' && tag !== 'TEXTAREA') e.preventDefault();
+});
+document.addEventListener('dragstart', e => {
+  if (e.target.tagName === 'IMG') e.preventDefault();
+});
+document.querySelectorAll('img').forEach(img => img.setAttribute('draggable', 'false'));
+
+/* ================= GOOGLE FORM SUBMISSION ================= */
+/* 1. Create your Google Form with the fields you want.
+   2. Open it, click the 3-dot menu -> "Get pre-filled link", fill in
+      dummy answers, click "Get link", then open that link and look at
+      the URL — each field appears as entry.XXXXXXXXX=value.
+   3. Replace GOOGLE_FORM_ACTION_URL below with your form's URL, but
+      swap "viewform" for "formResponse" at the end.
+   4. Replace each entry ID below with the ones from your form. */
+const GOOGLE_FORM_CONFIG = {
+  booking: {
+    actionUrl: 'https://docs.google.com/forms/d/e/YOUR_BOOKING_FORM_ID/formResponse',
+    entries: {
+      name: 'entry.111111111',
+      email: 'entry.222222222',
+      organisation: 'entry.333333333',
+      service: 'entry.444444444',
+      budget: 'entry.555555555',
+      message: 'entry.666666666'
+    }
+  },
+  fund: {
+    actionUrl: 'https://docs.google.com/forms/d/e/YOUR_FUND_FORM_ID/formResponse',
+    entries: {
+      name: 'entry.111111111',
+      email: 'entry.222222222',
+      projectTitle: 'entry.333333333',
+      format: 'entry.444444444',
+      synopsis: 'entry.555555555',
+      stage: 'entry.666666666'
+    }
+  }
+};
+
+function submitToGoogleForm(config, fields){
+  const url = new URL(config.actionUrl);
+  Object.keys(fields).forEach(key => {
+    const entryId = config.entries[key];
+    if (entryId) url.searchParams.append(entryId, fields[key] ?? '');
+  });
+  // Google Forms doesn't allow cross-origin reads, so we fire-and-forget
+  // with no-cors and treat the submission as successful.
+  return fetch(url.toString(), { method: 'POST', mode: 'no-cors' });
+}
+
+/* ---------- Data ---------- */
+const doItAll = ['Narrative Film Production','Documentary & Short Film','Film Financing & Co-Production','Talent & Casting','Art Direction & Visual Identity','Creator Development'];
+
+const galleryImages = [
+  {src:'images/WebRes-AbbyHair-0021.jpg', alt:'Creative Fashion Editorial'},
+  {src:'images/WebRes-AbbyHair-0027.jpg', alt:'African Creative Vision'},
+  {src:'images/WebRes-AbbyHair-0048.jpg', alt:'Bold Artistic Expression'},
+  {src:'images/WebRes-AbbyHair-0098.jpg', alt:'Cultural Storytelling'},
+  {src:'images/WebRes-AbbyHair-0143.jpg', alt:'Fashion & Identity'},
+  {src:'images/WebRes-AbbyHair-0187.jpg', alt:'Diaspora Aesthetics'},
+  {src:'images/WebRes-AbbyHair-0220.jpg', alt:'Visual Narrative'},
+  {src:'images/WebRes-AbbyHair-0289.jpg', alt:'Creative Direction'},
+  {src:'images/WebRes-AbbyHair-0329.jpg', alt:'Artistic Vision'},
+  {src:'images/WebRes-AbbyHair-0424.jpg', alt:'Contemporary African Art'}
+];
+
+const videos = [
+  {title:'24/7 Daily - Latest Episodes', desc:'Behind the scenes with African creatives shaping global culture', thumb:'images/WebRes-AbbyHair-0143.jpg'},
+  {title:'Sis Eko - Coming 2027', desc:'First look at our feature film set in 1977 Lagos and Nairobi', thumb:'images/WebRes-AbbyHair-0289.jpg'},
+  {title:'ELEWA TV - Channel', desc:'Subscribe for African stories, creative content, and more', thumb:'images/WebRes-AbbyHair-0021.jpg'}
+];
+
+const films = [
+  {genre:'Narrative Feature', title:'Sis Eko', badge:'2027', color:'#d4871e', desc:'In 1977 Lagos and Nairobi, a powerful Nigerian businesswoman discovers that the greatest threat to her empire and her country is not a stranger in politics but the man she married. As she unravels hidden betrayals, her family becomes the battlefield where love, power, and corruption collide.'},
+  {genre:'Docu-Series', title:'24/7 Daily', badge:'Series', color:'#c0392b', desc:'A docu-style entertainment series that immerses viewers into the world of creatives of African descent and the diaspora. Each episode blends storytelling with interactive experiences, highlighting how African culture shapes and inspires their craft, lifestyle, and global influence.'},
+  {genre:'Coming Soon', title:'More Projects TBA', badge:'In Development', color:'#1a6b2e', desc:'We are developing additional narratives and documentaries that center African stories. Stay tuned for announcements.'}
+];
+
+const services = [
+  {id:'production', color:'#d4871e', label:'01', title:'Film & Video Production', desc:'Full-service production from concept to screen. Documentaries, short films, branded content, and narrative features — we bring African stories to life with craft and intention.', offerings:['Feature Films','Short Films','Documentaries','Branded Content']},
+  {id:'creative', color:'#c0392b', label:'02', title:'Creative Direction & Consulting', desc:'We help brands, organisations, and creators develop a visual identity and storytelling strategy rooted in authentic African and diaspora culture.', offerings:['Brand Storytelling','Creative Strategy','Visual Identity','Campaign Direction']},
+  {id:'events', color:'#1a6b2e', label:'03', title:'Event Coverage & Live Capture', desc:'From cultural festivals to corporate activations — we document your moments with a cinematic eye, so every frame feels like it belongs on screen.', offerings:['Event Films','Live Coverage','Red Carpet','Conference Capture']},
+  {id:'workshops', color:'#e8c832', label:'04', title:'Workshops & Masterclasses', desc:'Through ELEWA Film Lab, we run immersive workshops on filmmaking, storytelling, and production — designed for emerging African creatives.', offerings:['Filmmaking Bootcamps','Screenwriting','Production Skills','Creative Business']}
+];
+
+const partners = [
+  {type:'partner', name:'Afro Future', role:'Partner', desc:'Celebrating Afrofuturism in art, culture, and creative innovation.', color:'#d4871e', logo:'images/logo-afrofuture.png', logoBg:'#fff'},
+  {type:'partner', name:'Birthright Africa', role:'Partner', desc:'Connecting the African diaspora to their roots and uncovering greatness.', color:'#d4871e', logo:'images/logo-birthright-africa.png', logoBg:'#fff'},
+  {type:'partner', name:'British Council', role:'Partner', desc:'Supporting international arts exchange and creative development.', color:'#d4871e', logo:'images/logo-arts-council.jpg', logoBg:'#fff'},
+  {type:'partner', name:'General Assembly', role:'Partner', desc:'Tech, creative skills, and entrepreneurship training across the diaspora.', color:'#d4871e', logo:null, logoBg:'#e8272a', initials:'GA'},
+  {type:'client', name:'Jollof Films', role:'Client & Collaborator', desc:'Authentic African cinema rooted in story, culture, and craft.', color:'#c0392b', logo:'images/logo-jollof-films.png', logoBg:'#f5ece0'},
+  {type:'client', name:'MIFILM', role:'Client', desc:'Bold visual storytelling at the intersection of music and film.', color:'#c0392b', logo:'images/logo-mifilm.png', logoBg:'#0a0a0a'},
+  {type:'client', name:'Free the Work', role:'Certified · Minority Owned', desc:'Minority-owned certified through Free the Work — championing underrepresented creators.', color:'#1a6b2e', logo:'images/logo-freethework.png', logoBg:'#00d4d4'},
+  {type:'client', name:'The Creative Chat', role:'Client & Collaborator', desc:'Visual identity, live coverage, and creative direction for the culture.', color:'#1a6b2e', logo:null, logoBg:'#1a6b2e', initials:'TCC'}
+];
+
+const perks = [
+  {icon:'🎬', text:'<strong>Co-production funding</strong> for features, docs, and shorts'},
+  {icon:'✍🏾', text:'<strong>Creative development</strong> — script, casting, art direction'},
+  {icon:'🌍', text:'<strong>Distribution strategy</strong> and festival submission support'},
+  {icon:'✊🏾', text:'<strong>African &amp; diaspora stories</strong> always prioritised'}
+];
+
+const faqs = [
+  {q:'Where is ELEWA TV based?', a:'We are headquartered in New York, NY with a strong presence in Lagos, Nigeria. We work with clients and partners across the US, Africa, and the wider diaspora.'},
+  {q:'What types of projects do you take on?', a:'We produce feature films, documentaries, docu-series, branded content, event coverage, and creative campaigns. If it tells an African story with intention, we want to be involved.'},
+  {q:'How do I book ELEWA TV for my project?', a:'Use the "Book Us" button in the navigation or visit our Services section to submit an enquiry. We respond within 2–3 business days.'},
+  {q:'Can I fund or co-produce one of your films?', a:'Yes! Visit the "Fund a Film" section to learn how you can invest in our upcoming projects, including the 2027 feature film Sis Eko.'},
+  {q:'Do you offer workshops or training?', a:'Through ELEWA Film Lab we run filmmaking bootcamps, screenwriting sessions, and creative business masterclasses for emerging African talent.'},
+  {q:'How can organisations partner with you?', a:'We welcome partnerships with brands, arts organisations, and community groups. Reach out via the Services section and mention you are interested in a partnership.'}
+];
+
+/* ---------- Nav ---------- */
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navMobile').classList.toggle('open');
+});
+document.querySelectorAll('[data-scroll]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.scroll)?.scrollIntoView({behavior:'smooth'});
+    document.getElementById('navMobile').classList.remove('open');
+  });
+});
+
+/* ---------- Ticker ---------- */
+const tickerItems = ['African Storytelling','Visual Production','Film Funding','Coming 2027','Women-Owned','Diaspora Stories','Submit Your Project'];
+const tickerTrack = document.getElementById('tickerTrack');
+[...tickerItems, ...tickerItems].forEach(t => {
+  const div = document.createElement('div');
+  div.className = 'ticker-item';
+  div.innerHTML = `<span>${t}</span><span class="star">★</span>`;
+  tickerTrack.appendChild(div);
+});
+
+/* ---------- About service list ---------- */
+const serviceListEl = document.getElementById('serviceList');
+doItAll.forEach((t,i) => {
+  const div = document.createElement('div');
+  div.className = 'service-item';
+  div.innerHTML = `<span class="n">${String(i+1).padStart(2,'0')}</span><span class="t">${t}</span>`;
+  serviceListEl.appendChild(div);
+});
+
+/* ---------- Gallery ---------- */
+const galleryGrid = document.getElementById('galleryGrid');
+galleryImages.forEach(img => {
+  const div = document.createElement('div');
+  div.className = 'gallery-item';
+  div.innerHTML = `<img src="${img.src}" alt="${img.alt}"><div class="gallery-caption"><span>View</span></div>`;
+  div.addEventListener('click', () => openLightbox(img.src, img.alt));
+  galleryGrid.appendChild(div);
+});
+const lightbox = document.getElementById('lightbox');
+function openLightbox(src, alt){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightboxImg').alt = alt;
+  lightbox.classList.add('open');
+}
+document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+
+/* ---------- Videos ---------- */
+const videoGrid = document.getElementById('videoGrid');
+const videoModal = document.getElementById('videoModal');
+videos.forEach(v => {
+  const div = document.createElement('div');
+  div.className = 'video-card';
+  div.innerHTML = `
+    <div class="video-thumb"><img src="${v.thumb}" alt="${v.title}"><div class="play-overlay"><div class="play-btn"></div></div></div>
+    <h3>${v.title}</h3><p>${v.desc}</p>`;
+  div.addEventListener('click', () => {
+    document.getElementById('videoModalTitle').textContent = v.title;
+    document.getElementById('videoModalDesc').textContent = v.desc;
+    videoModal.classList.add('open');
+  });
+  videoGrid.appendChild(div);
+});
+document.getElementById('videoModalClose').addEventListener('click', () => videoModal.classList.remove('open'));
+videoModal.addEventListener('click', e => { if (e.target === videoModal) videoModal.classList.remove('open'); });
+
+/* ---------- Film Slate ---------- */
+const filmGrid = document.getElementById('filmGrid');
+films.forEach(f => {
+  const div = document.createElement('div');
+  div.className = 'film-card';
+  div.style.borderTopColor = f.color;
+  div.innerHTML = `
+    <p class="genre" style="color:${f.color};">${f.genre}</p>
+    <h3>${f.title}</h3>
+    <p>${f.desc}</p>
+    <div class="foot"><span class="yr">ELEWA TV · 2027</span><span class="badge">${f.badge}</span></div>`;
+  filmGrid.appendChild(div);
+});
+
+/* ---------- Services ---------- */
+let activeService = services[0].id;
+const serviceTabsEl = document.getElementById('serviceTabs');
+const serviceDetailEl = document.getElementById('serviceDetail');
+
+function renderServiceTabs(){
+  serviceTabsEl.innerHTML = '';
+  services.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'service-tab';
+    const isActive = s.id === activeService;
+    btn.style.borderColor = s.color;
+    btn.style.background = isActive ? s.color : 'transparent';
+    btn.style.color = isActive ? '#1a1209' : s.color;
+    const words = s.title.split(' ');
+    btn.textContent = words[0] + ' ' + words[1];
+    btn.addEventListener('click', () => { activeService = s.id; renderServiceTabs(); renderServiceDetail(); });
+    serviceTabsEl.appendChild(btn);
+  });
+}
+function renderServiceDetail(){
+  const s = services.find(x => x.id === activeService);
+  serviceDetailEl.style.borderColor = s.color;
+  serviceDetailEl.innerHTML = `
+    <div class="service-info">
+      <span class="num" style="color:${s.color};">${s.label}</span>
+      <h3>${s.title}</h3>
+      <p>${s.desc}</p>
+      <button style="background:${s.color};" id="bookThisService">Book This Service →</button>
+    </div>
+    <div class="service-offerings" style="background:${s.color};">
+      <p class="label">Includes</p>
+      <ul>${s.offerings.map(o => `<li>${o}</li>`).join('')}</ul>
+    </div>`;
+  document.getElementById('bookThisService').addEventListener('click', () => {
+    openModal('bookingModal');
+    document.getElementById('bookingServiceSelect').value = s.title;
+  });
+}
+renderServiceTabs();
+renderServiceDetail();
+
+const bookingServiceSelect = document.getElementById('bookingServiceSelect');
+services.forEach(s => {
+  const opt = document.createElement('option');
+  opt.value = s.title; opt.textContent = s.title;
+  bookingServiceSelect.appendChild(opt);
+});
+
+/* ---------- Modals (generic open/close) ---------- */
+function openModal(id){ document.getElementById(id).classList.add('open'); }
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+document.getElementById('openBooking').addEventListener('click', () => openModal('bookingModal'));
+document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => closeModal(btn.dataset.close)));
+document.getElementById('bookingModal').addEventListener('click', e => { if (e.target.id === 'bookingModal') closeModal('bookingModal'); });
+
+document.getElementById('bookingForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.target;
+  const fields = {
+    name: form.name.value,
+    email: form.email.value,
+    organisation: form.organisation.value,
+    service: form.service.value,
+    budget: form.budget.value,
+    message: form.message.value
+  };
+  submitToGoogleForm(GOOGLE_FORM_CONFIG.booking, fields).finally(() => {
+    form.style.display = 'none';
+    document.getElementById('bookingSuccess').style.display = 'block';
+  });
+});
+
+/* ---------- Partners ---------- */
+const partnerGrid = document.getElementById('partnerGrid');
+const partnerFilters = document.getElementById('partnerFilters');
+const filters = [{key:'all', label:'All'},{key:'partner', label:'Partners'},{key:'client', label:'Clients'}];
+let activeFilter = 'all';
+
+function renderPartnerFilters(){
+  partnerFilters.innerHTML = '';
+  filters.forEach(f => {
+    const btn = document.createElement('button');
+    btn.textContent = f.label;
+    if (f.key === activeFilter) btn.classList.add('active');
+    btn.addEventListener('click', () => { activeFilter = f.key; renderPartnerFilters(); renderPartners(); });
+    partnerFilters.appendChild(btn);
+  });
+}
+function renderPartners(){
+  partnerGrid.innerHTML = '';
+  partners.filter(p => activeFilter === 'all' || p.type === activeFilter).forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'partner-card';
+    div.style.borderTopColor = p.color;
+    const logoHtml = p.logo
+      ? `<div class="partner-logo" style="background:${p.logoBg};padding:8px;">${`<img src="${p.logo}" alt="${p.name}">`}</div>`
+      : `<div class="partner-logo"><div class="initials" style="background:${p.logoBg};">${p.initials}</div></div>`;
+    div.innerHTML = `
+      ${logoHtml}
+      <h4>${p.name}</h4>
+      <span class="role" style="color:${p.color};">${p.role}</span>
+      <p>${p.desc}</p>`;
+    partnerGrid.appendChild(div);
+  });
+}
+renderPartnerFilters();
+renderPartners();
+
+/* ---------- Fund a Film perks ---------- */
+const perkListEl = document.getElementById('perkList');
+perks.forEach(p => {
+  const div = document.createElement('div');
+  div.className = 'perk';
+  div.innerHTML = `<div class="icon">${p.icon}</div><p>${p.text}</p>`;
+  perkListEl.appendChild(div);
+});
+
+document.getElementById('fundForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.target;
+  const fields = {
+    name: form.name.value,
+    email: form.email.value,
+    projectTitle: form.projectTitle.value,
+    format: form.format.value,
+    synopsis: form.synopsis.value,
+    stage: form.stage.value
+  };
+  submitToGoogleForm(GOOGLE_FORM_CONFIG.fund, fields).finally(() => {
+    form.style.display = 'none';
+    document.getElementById('fundSuccess').style.display = 'block';
+    setTimeout(() => {
+      form.reset();
+      form.style.display = 'flex';
+      form.style.flexDirection = 'column';
+      form.style.gap = '16px';
+      document.getElementById('fundSuccess').style.display = 'none';
+    }, 4000);
+  });
+});
+
+/* ---------- FAQ ---------- */
+const faqList = document.getElementById('faqList');
+faqs.forEach(f => {
+  const div = document.createElement('div');
+  div.className = 'faq-item';
+  div.innerHTML = `
+    <button class="faq-q"><span class="q">${f.q}</span><span class="plus">+</span></button>
+    <p class="faq-a">${f.a}</p>`;
+  div.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = div.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+    if (!wasOpen) div.classList.add('open');
+  });
+  faqList.appendChild(div);
+});
+
+/* ---------- Privacy modal ---------- */
+document.querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.open)));
+document.getElementById('privacyModal').addEventListener('click', e => { if (e.target.id === 'privacyModal') closeModal('privacyModal'); });
+</script>
 </body>
 </html>
