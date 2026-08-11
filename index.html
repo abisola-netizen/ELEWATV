@@ -15,7 +15,6 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  tyle>
   /* ------------------------------------------------------------------
      HERO HEADLINE OVERLAP FIX
  
@@ -31,121 +30,7 @@
      clearance instead of a 147px overlap. Type size is unchanged.
      ------------------------------------------------------------------ */
   .hero > .wrap { width: 100%; }
-</style>
- 
-<script>
-(function () {
-  'use strict';
- 
-  /* ------------------------------------------------------------------
-     1. VIDEO EMBEDS
-     Cards are matched on their title text, not position, so reordering
-     the cards later will not break this.
- 
-     To add or change a video: grab the 11-character ID from its
-     YouTube link. In https://youtu.be/xrFGnOOYl10 the ID is
-     xrFGnOOYl10 — the part after the last slash, before any "?".
-     ------------------------------------------------------------------ */
-  var VIDEOS = [
-    { match: '24/7 Daily',        id: 'xrFGnOOYl10' },  /* Ep 3 — Fatamata Kamara */
-    { match: 'ELEWA TV - Channel', id: '8pLL7ihG4FM' }   /* Creative Chat Link Up: Ghana */
-    /* Sis Eko has no footage yet — see section 2 below.
-       When you have a teaser, add:
-       , { match: 'Sis Eko', id: 'PASTE_ID_HERE' }
-       and delete the COMING_SOON entry below. */
-  ];
- 
-  /* Cards with no video yet get this panel instead of a dead player. */
-  var COMING_SOON = [
-    { match: 'Sis Eko', line1: 'Coming 2027', line2: 'First look landing soon' }
-  ];
- 
-  var modal = document.getElementById('videoModal');
-  if (!modal) return;
-  var body = modal.querySelector('.video-modal-body');
-  if (!body) return;
- 
-  var originalBody = body.innerHTML;   /* kept so we can restore on close */
- 
-  function embed(id) {
-    body.innerHTML =
-      '<div style="position:relative;width:100%;padding-top:56.25%;background:#000">' +
-        '<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0" ' +
-          'src="https://www.youtube-nocookie.com/embed/' + id +
-            '?rel=0&modestbranding=1&autoplay=1" ' +
-          'title="ELEWA TV video" ' +
-          'allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" ' +
-          'allowfullscreen></iframe>' +
-      '</div>';
-  }
- 
-  function comingSoon(item) {
-    body.innerHTML =
-      '<div style="padding:64px 24px;text-align:center;background:#1a1209">' +
-        '<div style="font-family:\'Syne\',sans-serif;font-size:11px;font-weight:700;' +
-             'text-transform:uppercase;letter-spacing:.2em;color:#e8c832;margin-bottom:14px">' +
-          item.line1 +
-        '</div>' +
-        '<div style="font-family:\'Syne\',sans-serif;font-size:26px;font-weight:800;color:#fdf6ed">' +
-          item.line2 +
-        '</div>' +
-      '</div>';
-  }
- 
-  function restore() {
-    body.innerHTML = originalBody;   /* removing the iframe stops the audio */
-  }
- 
-  Array.prototype.forEach.call(document.querySelectorAll('.video-card'), function (card) {
-    card.addEventListener('click', function () {
-      var text = card.textContent;
-      var video = VIDEOS.filter(function (v) { return text.indexOf(v.match) !== -1; })[0];
-      var soon  = COMING_SOON.filter(function (v) { return text.indexOf(v.match) !== -1; })[0];
-      /* setTimeout lets the site's own handler finish opening the modal first */
-      setTimeout(function () {
-        if (video) embed(video.id);
-        else if (soon) comingSoon(soon);
-      }, 0);
-    });
-  });
- 
-  /* --- stop playback whenever the modal closes --- */
-  var closeBtn = document.getElementById('videoModalClose');
-  if (closeBtn) closeBtn.addEventListener('click', function () { setTimeout(restore, 0); });
- 
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) setTimeout(restore, 0);   /* clicked the backdrop */
-  });
- 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') setTimeout(restore, 0);
-  });
- 
- 
-  /* ------------------------------------------------------------------
-     2. THE CREATIVE CHAT LOGO
-     Swaps the "TCC" text tile for the real logo.
-     Requires images/logo-thecreativechat.png to be uploaded.
- 
-     To do the same for General Assembly once you have its logo:
-     add another entry to this list.
-     ------------------------------------------------------------------ */
-  var LOGOS = [
-    { match: 'The Creative Chat', file: 'images/logo-thecreativechat.png', alt: 'The Creative Chat' }
-  ];
- 
-  Array.prototype.forEach.call(document.querySelectorAll('.partner-card'), function (card) {
-    var text = card.textContent;
-    var hit = LOGOS.filter(function (l) { return text.indexOf(l.match) !== -1; })[0];
-    if (!hit) return;
-    var tile = card.querySelector('.partner-logo');
-    if (!tile || tile.querySelector('img')) return;   /* already has a logo */
-    tile.innerHTML = '<img src="' + hit.file + '" alt="' + hit.alt +
-                     '" style="width:100%;height:100%;object-fit:contain">';
-  });
- 
-})();
-</script>
+
   body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;line-height:1.5;
     -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
   }
@@ -1082,6 +967,119 @@ faqs.forEach(f => {
 /* ---------- Privacy modal ---------- */
 document.querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.open)));
 document.getElementById('privacyModal').addEventListener('click', e => { if (e.target.id === 'privacyModal') closeModal('privacyModal'); });
+</script>
+  <script>
+(function () {
+  'use strict';
+ 
+  /* ------------------------------------------------------------------
+     1. VIDEO EMBEDS
+     Cards are matched on their title text, not position, so reordering
+     the cards later will not break this.
+ 
+     To add or change a video: grab the 11-character ID from its
+     YouTube link. In https://youtu.be/xrFGnOOYl10 the ID is
+     xrFGnOOYl10 — the part after the last slash, before any "?".
+     ------------------------------------------------------------------ */
+  var VIDEOS = [
+    { match: '24/7 Daily',        id: 'xrFGnOOYl10' },  /* Ep 3 — Fatamata Kamara */
+    { match: 'ELEWA TV - Channel', id: '8pLL7ihG4FM' }   /* Creative Chat Link Up: Ghana */
+    /* Sis Eko has no footage yet — see section 2 below.
+       When you have a teaser, add:
+       , { match: 'Sis Eko', id: 'PASTE_ID_HERE' }
+       and delete the COMING_SOON entry below. */
+  ];
+ 
+  /* Cards with no video yet get this panel instead of a dead player. */
+  var COMING_SOON = [
+    { match: 'Sis Eko', line1: 'Coming 2027', line2: 'First look landing soon' }
+  ];
+ 
+  var modal = document.getElementById('videoModal');
+  if (!modal) return;
+  var body = modal.querySelector('.video-modal-body');
+  if (!body) return;
+ 
+  var originalBody = body.innerHTML;   /* kept so we can restore on close */
+ 
+  function embed(id) {
+    body.innerHTML =
+      '<div style="position:relative;width:100%;padding-top:56.25%;background:#000">' +
+        '<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0" ' +
+          'src="https://www.youtube-nocookie.com/embed/' + id +
+            '?rel=0&modestbranding=1&autoplay=1" ' +
+          'title="ELEWA TV video" ' +
+          'allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" ' +
+          'allowfullscreen></iframe>' +
+      '</div>';
+  }
+ 
+  function comingSoon(item) {
+    body.innerHTML =
+      '<div style="padding:64px 24px;text-align:center;background:#1a1209">' +
+        '<div style="font-family:\'Syne\',sans-serif;font-size:11px;font-weight:700;' +
+             'text-transform:uppercase;letter-spacing:.2em;color:#e8c832;margin-bottom:14px">' +
+          item.line1 +
+        '</div>' +
+        '<div style="font-family:\'Syne\',sans-serif;font-size:26px;font-weight:800;color:#fdf6ed">' +
+          item.line2 +
+        '</div>' +
+      '</div>';
+  }
+ 
+  function restore() {
+    body.innerHTML = originalBody;   /* removing the iframe stops the audio */
+  }
+ 
+  Array.prototype.forEach.call(document.querySelectorAll('.video-card'), function (card) {
+    card.addEventListener('click', function () {
+      var text = card.textContent;
+      var video = VIDEOS.filter(function (v) { return text.indexOf(v.match) !== -1; })[0];
+      var soon  = COMING_SOON.filter(function (v) { return text.indexOf(v.match) !== -1; })[0];
+      /* setTimeout lets the site's own handler finish opening the modal first */
+      setTimeout(function () {
+        if (video) embed(video.id);
+        else if (soon) comingSoon(soon);
+      }, 0);
+    });
+  });
+ 
+  /* --- stop playback whenever the modal closes --- */
+  var closeBtn = document.getElementById('videoModalClose');
+  if (closeBtn) closeBtn.addEventListener('click', function () { setTimeout(restore, 0); });
+ 
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) setTimeout(restore, 0);   /* clicked the backdrop */
+  });
+ 
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setTimeout(restore, 0);
+  });
+ 
+ 
+  /* ------------------------------------------------------------------
+     2. THE CREATIVE CHAT LOGO
+     Swaps the "TCC" text tile for the real logo.
+     Requires images/logo-thecreativechat.png to be uploaded.
+ 
+     To do the same for General Assembly once you have its logo:
+     add another entry to this list.
+     ------------------------------------------------------------------ */
+  var LOGOS = [
+    { match: 'The Creative Chat', file: 'images/logo-thecreativechat.png', alt: 'The Creative Chat' }
+  ];
+ 
+  Array.prototype.forEach.call(document.querySelectorAll('.partner-card'), function (card) {
+    var text = card.textContent;
+    var hit = LOGOS.filter(function (l) { return text.indexOf(l.match) !== -1; })[0];
+    if (!hit) return;
+    var tile = card.querySelector('.partner-logo');
+    if (!tile || tile.querySelector('img')) return;   /* already has a logo */
+    tile.innerHTML = '<img src="' + hit.file + '" alt="' + hit.alt +
+                     '" style="width:100%;height:100%;object-fit:contain">';
+  });
+ 
+})();
 </script>
 </body>
 </html>
