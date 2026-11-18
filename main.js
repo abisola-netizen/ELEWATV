@@ -157,3 +157,74 @@
     done(fund);
   });
 })();
+
+/* ================= MOTION =================
+   Fades sections and cards up as they scroll into view. Skipped for
+   visitors who ask their device for reduced motion. */
+(function () {
+  'use strict';
+  var header = document.querySelector('.site-header');
+  function onScroll() { if (header) header.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var root = document.documentElement;
+  root.classList.add('motion');
+
+  /* Single blocks that rise on their own */
+  var singles = '.section .tag, .section .h2, .section .lead, .head-row, .strip, .community-grid, .films-band, .fund-left, .fund-right, .contact-inner > *, .cta-inner > *, .faq-inner > *, .band .h2, .band .tag, .partner-filters, .small-note';
+  /* Groups whose children arrive one after another */
+  var groups = '.tiles, .services, .partners, .packages, .video-grid';
+
+  var items = [];
+  Array.prototype.forEach.call(document.querySelectorAll(singles), function (el) {
+    if (el.closest('.hero')) return;
+    items.push(el);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(groups), function (g) {
+    Array.prototype.forEach.call(g.children, function (child, i) {
+      child.style.setProperty('--d', Math.min(i, 7) * 0.08 + 's');
+      items.push(child);
+    });
+  });
+  /* A heading's section block carries the "&" animation */
+  Array.prototype.forEach.call(document.querySelectorAll('.h2'), function (h) { if (items.indexOf(h) === -1 && !h.closest('.hero')) items.push(h); });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+  items.forEach(function (el) {
+    el.classList.add('reveal');
+    io.observe(el);
+    /* Once a card has arrived, hand it back to its normal hover styles */
+    if (el.parentElement && el.parentElement.matches(groups)) {
+      el.addEventListener('transitionend', function done(ev) {
+        if (ev.propertyName !== 'opacity' || !el.classList.contains('in')) return;
+        el.removeEventListener('transitionend', done);
+        el.classList.remove('reveal', 'in');
+        el.style.removeProperty('--d');
+      });
+    }
+  });
+
+  /* Anything already on screen at load shows straight away */
+  requestAnimationFrame(function () {
+    items.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+    });
+  });
+
+  /* Partner filters hide cards with display:none; keep revealed state */
+  Array.prototype.forEach.call(document.querySelectorAll('.partner-filters button'), function (b) {
+    b.addEventListener('click', function () {
+      Array.prototype.forEach.call(document.querySelectorAll('.partner'), function (p) { p.classList.add('in'); });
+    });
+  });
+})();
