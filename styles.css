@@ -166,6 +166,14 @@ h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:800;margin:0}
 .form label{display:flex;flex-direction:column;gap:6px;font-family:'Syne',sans-serif;font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 .form input,.form select,.form textarea{font:16px 'DM Sans',sans-serif;padding:12px;border:2px solid var(--ink);background:var(--bg);color:var(--ink);text-transform:none;letter-spacing:0}
 .form button{grid-column:1/-1;justify-self:start}
+.form fieldset.checks{border:2px solid var(--ink);padding:14px 16px;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}
+.form fieldset.checks legend{font-family:'Syne',sans-serif;font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:0 6px}
+.form label.check{flex-direction:row;align-items:center;gap:10px;font-family:'DM Sans',sans-serif;font-weight:400;font-size:16px;letter-spacing:0;text-transform:none}
+.form label.check input[type=checkbox]{width:18px;height:18px;accent-color:var(--red);padding:0}
+.form label.check.other input[type=text]{flex:1;min-width:0;padding:8px}
+.form-error{margin:0;color:var(--red);font-weight:500;min-height:0}
+.form-error:empty{display:none}
+@media (max-width:600px){.form fieldset.checks{grid-template-columns:1fr}}
 .form-success{display:none;border:2px solid var(--ink);background:var(--bg);padding:20px;font-weight:500}
 @media (max-width:600px){.form{grid-template-columns:1fr}}
 

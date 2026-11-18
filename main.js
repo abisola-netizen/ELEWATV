@@ -13,9 +13,10 @@
         and replace each entry ID. */
   var GOOGLE_FORMS = {
     enquiry: {
-      actionUrl: '',
-      entries: { name: 'entry.111111111', business: 'entry.222222222', contact: 'entry.333333333',
-                 interest: 'entry.444444444', sector: 'entry.555555555', handle: 'entry.666666666', message: 'entry.777777777' }
+      /* "Kickstart Your Project With Elewa" Google Form */
+      actionUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdchxdAqb_l8esnT2IIjfsrAhl8ONuY8XTMBsOn9A0J4DwKtg/formResponse',
+      entries: { name: 'entry.212281732', company: 'entry.1904072816', email: 'entry.1499351472', phone: 'entry.1301562687',
+                 services: 'entry.345344351', goals: 'entry.851275440', budget: 'entry.1858177341', timeline: 'entry.1929292914' }
     },
     fund: {
       actionUrl: '',
@@ -133,15 +134,41 @@
   var enquiry = document.getElementById('enquiryForm');
   if (enquiry) enquiry.addEventListener('submit', function (e) {
     e.preventDefault();
-    var f = fieldsOf(enquiry);
+    var err = document.getElementById('enquiryError');
     var cfg = GOOGLE_FORMS.enquiry;
-    if (cfg.actionUrl) { sendToGoogle(cfg, f).then(function () { done(enquiry); }, function () { done(enquiry); }); return; }
-    var body = 'Name: ' + f.name + '\nBusiness: ' + f.business + '\nEmail: ' + f.contact +
-      '\nInterested in: ' + f.interest + '\nSector: ' + f.sector + '\nWebsite/Instagram: ' + f.handle +
-      '\n\nWhat I\'d like to achieve:\n' + f.message;
-    window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Enquiry from ' + (f.business || f.name)) +
-      '&body=' + encodeURIComponent(body);
-    done(enquiry);
+    var el = enquiry.elements;
+    var services = Array.prototype.filter.call(enquiry.querySelectorAll('input[name="services"]'), function (c) { return c.checked; }).map(function (c) { return c.value; });
+    var other = el.servicesOther.value.trim();
+    if (other && services.indexOf('__other_option__') === -1) services.push('__other_option__');
+    if (!services.length) { err.textContent = 'Please choose at least one service.'; return; }
+    if (services.indexOf('__other_option__') !== -1 && !other) { err.textContent = 'Please tell us which other service you need.'; el.servicesOther.focus(); return; }
+    err.textContent = '';
+
+    /* The Google Form has no package or sector question, so they go in front of the goals */
+    var extra = [];
+    if (el['package'].value) extra.push('Package: ' + el['package'].value);
+    if (el.sector.value) extra.push('Sector: ' + el.sector.value);
+    var goals = (extra.length ? extra.join(' | ') + '\n\n' : '') + el.goals.value.trim();
+
+    var data = new URLSearchParams();
+    data.append(cfg.entries.name, el.name.value.trim());
+    data.append(cfg.entries.company, el.company.value.trim());
+    data.append(cfg.entries.email, el.email.value.trim());
+    data.append(cfg.entries.phone, el.phone.value.trim());
+    services.forEach(function (v) { data.append(cfg.entries.services, v); });
+    if (other) data.append(cfg.entries.services + '.other_option_response', other);
+    data.append(cfg.entries.goals, goals);
+    data.append(cfg.entries.budget, el.budget.value);
+    data.append(cfg.entries.timeline, el.timeline.value);
+
+    var btn = enquiry.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(cfg.actionUrl, { method: 'POST', mode: 'no-cors', body: data })
+      .then(function () { done(enquiry); })
+      .catch(function () {
+        err.textContent = 'Sorry, that didn\'t send. Please email us at ' + EMAIL + '.';
+      })
+      .then(function () { btn.disabled = false; btn.textContent = 'Send enquiry →'; });
   });
 
   var fund = document.getElementById('fundForm');
