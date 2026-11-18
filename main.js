@@ -2,12 +2,11 @@
 (function () {
   'use strict';
 
-  var WHATSAPP = '254111861987';   /* 0111 861 987 in international format */
   var EMAIL = 'Info@elewatv.com';
 
   /* ================= GOOGLE FORM (optional) =================
-     Leave actionUrl empty and enquiries open WhatsApp with the details
-     filled in. To collect them in a Google Form instead:
+     Leave actionUrl empty and enquiries open the visitor's email app with
+     the details filled in, addressed to Info@elewatv.com. To collect them in a Google Form instead:
      1. Make the form, open it, 3-dot menu -> "Get pre-filled link".
      2. Fill dummy answers, "Get link"; each field shows as entry.XXXXXXXXX.
      3. Paste the form URL below with "viewform" swapped for "formResponse",
@@ -26,10 +25,31 @@
   };
 
   /* ================= CONTENT PROTECTION =================
-     Deters casual copying of images and text; it cannot stop screenshots
-     or view-source. */
-  document.addEventListener('contextmenu', function (e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
-  document.addEventListener('dragstart', function (e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
+     Blocks right-click, text selection, copying, dragging images, saving,
+     printing and view-source shortcuts. Nothing on a public website can stop
+     screenshots or a determined person, but this stops casual copying. */
+  function isField(el) { return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.isContentEditable); }
+  document.addEventListener('contextmenu', function (e) { if (!isField(e.target)) e.preventDefault(); });
+  ['copy', 'cut'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) {
+      if (isField(e.target)) return;
+      e.preventDefault();
+      if (e.clipboardData) e.clipboardData.setData('text/plain', '\u00a9 ELEWA TV \u2014 elewatv.com');
+    });
+  });
+  document.addEventListener('selectstart', function (e) { if (!isField(e.target)) e.preventDefault(); });
+  document.addEventListener('dragstart', function (e) { if (e.target.tagName === 'IMG' || e.target.tagName === 'A') e.preventDefault(); });
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase();
+    var mod = e.ctrlKey || e.metaKey;
+    if (e.key === 'F12' ||
+        (mod && ['s', 'u', 'p'].indexOf(k) !== -1) ||
+        (mod && e.shiftKey && ['i', 'j', 'c'].indexOf(k) !== -1) ||
+        (mod && e.altKey && ['i', 'j', 'c', 'u'].indexOf(k) !== -1) ||
+        (mod && ['c', 'x', 'a'].indexOf(k) !== -1 && !isField(e.target))) {
+      e.preventDefault();
+    }
+  });
   Array.prototype.forEach.call(document.querySelectorAll('img'), function (img) { img.setAttribute('draggable', 'false'); });
 
   /* ================= NAV ================= */
@@ -116,11 +136,11 @@
     var f = fieldsOf(enquiry);
     var cfg = GOOGLE_FORMS.enquiry;
     if (cfg.actionUrl) { sendToGoogle(cfg, f).then(function () { done(enquiry); }, function () { done(enquiry); }); return; }
-    var text = 'Hello ELEWA TV, I\'d like to enquire.\n\n' +
-      'Name: ' + f.name + '\nBusiness: ' + f.business + '\nContact: ' + f.contact +
+    var body = 'Name: ' + f.name + '\nBusiness: ' + f.business + '\nEmail: ' + f.contact +
       '\nInterested in: ' + f.interest + '\nSector: ' + f.sector + '\nWebsite/Instagram: ' + f.handle +
       '\n\nWhat I\'d like to achieve:\n' + f.message;
-    window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text), '_blank');
+    window.location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent('Enquiry from ' + (f.business || f.name)) +
+      '&body=' + encodeURIComponent(body);
     done(enquiry);
   });
 
